@@ -17,39 +17,35 @@ let animatedSprite2;
 function setup() {
   createCanvas(400, 400);
 
-  // Create a sprite with a rectangle as visual component
+  // Create a sprite with a rectangle
   boxSprite = createSprite(100, 150, 50, 100);
   boxSprite.shapeColor = color("red");
-  
-  // Create a sprite and associate an existing image as visual component
-//   image = loadImage("assets/asterisk.png");
-//   imageSprite = createSprite(300, 150);
-//   imageSprite.addImage(image);
 
-  //create a sprite and associate an existing animation as visual component
-//   animation1 = loadAnimation(
-//     "assets/ghost_standing0001.png",
-//     "assets/ghost_standing0007.png"
-//   );
-//   animatedSprite1 = createSprite(500, 150, 50, 100);
-//   animatedSprite1.addAnimation("floating", animation1);
+  // Create a sprite and associate an image
+  image = loadImage("assets/asterisk.png");
+  imageSprite = createSprite(300, 150);
+  imageSprite.addImage(image);
 
-//   animation2 = loadAnimation(
-//     "assets/cloud_breathing0001.png",
-//     "assets/cloud_breathing0005.png"
-//   );
-//   animatedSprite2 = createSprite(700, 150, 50, 100);
-//   animatedSprite2.addAnimation("breathing", animation2);
+  // Create a sprite and associate an animation
+    animation1 = loadAnimation(
+      "assets/ghost_standing0001.png",
+      "assets/ghost_standing0007.png"
+    );
+    animatedSprite1 = createSprite(500, 150, 50, 100);
+    animatedSprite1.addAnimation("floating", animation1);
+
+  // Create another sprite and associate another animation
+  //   animation2 = loadAnimation(
+  //     "assets/cloud_breathing0001.png",
+  //     "assets/cloud_breathing0005.png"
+  //   );
+  //   animatedSprite2 = createSprite(700, 150, 50, 100);
+  //   animatedSprite2.addAnimation("breathing", animation2);
 }
 
 function draw() {
   background(255);
 
-  fill(0);
-  // textAlign(CENTER);
-  // text("Click to create a new sprite", width / 2, height / 2);
-  //draw all the sprites added to the sketch so far
-  //the positions will be updated automatically at every cycle
   drawSprites();
 }
 /*

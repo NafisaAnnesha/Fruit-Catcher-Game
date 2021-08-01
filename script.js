@@ -10,26 +10,26 @@ const CDN = "https://cdn.glitch.com/eeb7d150-fc97-47a5-a1d3-a53d7d323bbe%2F";
 
 let boxSprite;
 let image;
-let imageSprite;
-let animation1;
-let animatedSprite1;
-let animation2;
-let animatedSprite2;
+let asteriskSprite;
+let cloudBreathingAnimation;
+let cloudSprite;
+let ghostStandingAnimation;
+let ghostSprite;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // Create a sprite with a rectangle
+  // Create a rectangle sprite
   boxSprite = createSprite(100, 150, 50, 100);
   boxSprite.shapeColor = color("red");
 
-  // Create a sprite and associate an image
+  // Create a image sprite
   image = loadImage(`${CDN}asterisk.png`);
-  imageSprite = createSprite(300, 150);
-  imageSprite.addImage(image);
+  asteriskSprite = createSprite(300, 150);
+  asteriskSprite.addImage(image);
 
-  // Create a sprite and associate an animation
-  animation1 = loadAnimation(
+  // Create a "breathing" animation sprite
+  cloudBreathingAnimation = loadAnimation(
     `${CDN}cloud_breathing0001.png`,
     `${CDN}cloud_breathing0002.png`,
     `${CDN}cloud_breathing0003.png`,
@@ -40,16 +40,21 @@ function setup() {
     `${CDN}cloud_breathing0008.png`,
     `${CDN}cloud_breathing0009.png`
   );
-  animatedSprite1 = createSprite(500, 150, 50, 100);
-  animatedSprite1.addAnimation("floating", animation1);
+  cloudSprite = createSprite(500, 150, 50, 100);
+  cloudSprite.addAnimation("breathing", cloudBreathingAnimation);
 
-  // Create another sprite and associate another animation
-  //   animation2 = loadAnimation(
-  //     "assets/cloud_breathing0001.png",
-  //     "assets/cloud_breathing0005.png"
-  //   );
-  //   animatedSprite2 = createSprite(700, 150, 50, 100);
-  //   animatedSprite2.addAnimation("breathing", animation2);
+  // Create a "floating" animation sprite
+  ghostStandingAnimation = loadAnimation(
+    `${CDN}ghost_standing0001.png`,
+    `${CDN}ghost_standing0002.png`,
+    `${CDN}ghost_standing0003.png`,
+    `${CDN}ghost_standing0004.png`,
+    `${CDN}ghost_standing0005.png`,
+    `${CDN}ghost_standing0006.png`,
+    `${CDN}ghost_standing0007.png`
+  );
+  ghostSprite = createSprite(700, 150, 50, 100);
+  ghostSprite.addAnimation("floating", ghostStandingAnimation);
 }
 
 function draw() {
@@ -70,13 +75,6 @@ function mousePressed() {
   s.velocity.y = random(-5, 5);
 }
 
-//Changing the sprites' appearance
-//press the mouse and move the cursor to control the animations
-
-function setu2p() {
-  createCanvas(800, 300);
-}
-
 function draw2() {
   background(255, 255, 255);
 
@@ -84,8 +82,8 @@ function draw2() {
   //accessible from the .animation property of the sprite
 
   //stop/play a sprite animation
-  if (mouseIsPressed) animatedSprite1.animation.stop();
-  else animatedSprite1.animation.play();
+  if (mouseIsPressed) cloudSprite.animation.stop();
+  else cloudSprite.animation.play();
 
   //change the frame in relation to the mouse x position
   // var frame = round(map(mouseX, 0, width, 0, anotherAnimatedSprite.animation.getLastFrame()));

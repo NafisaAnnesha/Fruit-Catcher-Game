@@ -8,16 +8,16 @@
 
 const CDN = "https://cdn.glitch.com/eeb7d150-fc97-47a5-a1d3-a53d7d323bbe%2F";
 
-let cloudVelocity;
-let cloudSprite;
-let cloudBreathingAnimation;
+let velocity;
+let sprite;
+let animation;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  cloudVelocity = 3;
+  velocity = 3;
 
-  cloudBreathingAnimation = loadAnimation(
+  animation = loadAnimation(
     `${CDN}cloud_breathing0001.png`,
     `${CDN}cloud_breathing0002.png`,
     `${CDN}cloud_breathing0003.png`,
@@ -29,38 +29,25 @@ function setup() {
     `${CDN}cloud_breathing0009.png`
   );
 
-  cloudSprite = createSprite(400, 200, 50, 50);
-  cloudSprite.addAnimation("breathing", cloudBreathingAnimation);
-  cloudSprite.velocity.x = cloudVelocity;
-  cloudSprite.velocity.y = -cloudVelocity;
-  
-  
-  
+  sprite = createSprite(400, 200, 50, 50);
+  sprite.addAnimation("breathing", animation);
+  sprite.velocity.x = velocity;
+  sprite.velocity.y = -velocity;
 }
 
 function draw() {
   background(255);
 
-  console.log("width", cloudSprite.width)
-  console.log("height", cloudSprite.height)
-  
-  if (
-    cloudSprite.position.x < 0 ||
-    cloudSprite.position.x > width ///- cloudSprite.width
-  ) {
-    cloudSprite.velocity.x = -1 * cloudSprite.velocity.x;
+  console.log("width", sprite.width);
+  console.log("height", sprite.height);
+
+  if (sprite.position.x < 0 || sprite.position.x > width) {
+    sprite.velocity.x = -1 * sprite.velocity.x;
   }
 
-  if (
-    cloudSprite.position.y < 0 ||
-    cloudSprite.position.y > height ///- cloudSprite.height
-  ) {
-    cloudSprite.velocity.y = -1 * cloudSprite.velocity.y;
+  if (sprite.position.y < 0 || sprite.position.y > height) {
+    sprite.velocity.y = -1 * sprite.velocity.y;
   }
 
   drawSprites();
-}
-
-function mousePressed() {
-  cloudSprite.visible = !cloudSprite.visible;
 }

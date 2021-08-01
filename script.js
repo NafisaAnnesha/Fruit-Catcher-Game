@@ -23,7 +23,7 @@ function setup() {
   boxSprite = createSprite(100, 150, 50, 100);
   boxSprite.shapeColor = color("red");
 
-  // Create a image sprite
+  // Create an image sprite
   image = loadImage(`${CDN}asterisk.png`);
   asteriskSprite = createSprite(300, 150);
   asteriskSprite.addImage(image);

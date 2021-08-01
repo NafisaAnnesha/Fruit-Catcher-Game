@@ -2,7 +2,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, fill,
  *    loadImage, loadAnimation, mouseIsPressed, mouseX, mouseY, random,
- *    text, textAlign, windowWidth, windowHeight
+ *    text, textAlign, windowWidth, windowHeight, width, height
  *    UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER
  */
 
@@ -29,26 +29,33 @@ function setup() {
     `${CDN}cloud_breathing0009.png`
   );
 
-  cloudSprite = createSprite(400, 200);
+  cloudSprite = createSprite(400, 200, 50, 50);
   cloudSprite.addAnimation("breathing", cloudBreathingAnimation);
   cloudSprite.velocity.x = cloudVelocity;
+  cloudSprite.velocity.y = -cloudVelocity;
+  
+  
+  
 }
 
 function draw() {
   background(255);
 
+  console.log("width", cloudSprite.width)
+  console.log("height", cloudSprite.height)
+  
   if (
     cloudSprite.position.x < 0 ||
-    cloudSprite.position.x > windowWidth - cloudSprite.width
+    cloudSprite.position.x > width ///- cloudSprite.width
   ) {
-    cloudSprite.position.x = -1 * cloudVelocity;
+    cloudSprite.velocity.x = -1 * cloudSprite.velocity.x;
   }
 
   if (
     cloudSprite.position.y < 0 ||
-    cloudSprite.position.y > windowHeight - cloudSprite.height
+    cloudSprite.position.y > height ///- cloudSprite.height
   ) {
-    cloudSprite.position.y = -1 * cloudVelocity;
+    cloudSprite.velocity.y = -1 * cloudSprite.velocity.y;
   }
 
   drawSprites();

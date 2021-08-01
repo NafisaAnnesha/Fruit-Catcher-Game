@@ -3,7 +3,7 @@
  *    background, color, createCanvas, createSprite, drawSprites, fill,
  *    keyIsDown, loadImage, loadAnimation, mouseIsPressed, mouseX, mouseY,
  *    random, text, textAlign, windowWidth, windowHeight
- *    UP_ARROW, DOWN_ARROW
+ *    UP_ARROW, DOWN_ARROW, ENTER
  */
 
 const CDN = "https://cdn.glitch.com/eeb7d150-fc97-47a5-a1d3-a53d7d323bbe%2F";
@@ -75,8 +75,7 @@ function draw() {
   if (keyIsDown(DOWN_ARROW)) {
     sprite.scale -= 0.05;
   }
-
-  if (mouseIsPressed) {
+  if (keyIsDown(ENTER)) {
     sprite.visible = !sprite.visible;
   }
 

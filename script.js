@@ -2,9 +2,11 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, fill, height,
  *    loadImage, loadAnimation, mouseIsPressed, mouseX, mouseY, random, text
- *    textAlign, width
+ *    textAlign, width, windowWidth, windowHeight
  *    UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER
  */
+
+const CDN = "https://cdn.glitch.com/eeb7d150-fc97-47a5-a1d3-a53d7d323bbe%2F";
 
 let boxSprite;
 let image;
@@ -15,24 +17,31 @@ let animation2;
 let animatedSprite2;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
 
   // Create a sprite with a rectangle
   boxSprite = createSprite(100, 150, 50, 100);
   boxSprite.shapeColor = color("red");
 
   // Create a sprite and associate an image
-  image = loadImage("assets/asterisk.png");
+  image = loadImage(`${CDN}asterisk.png`);
   imageSprite = createSprite(300, 150);
   imageSprite.addImage(image);
 
   // Create a sprite and associate an animation
-  // animation1 = loadAnimation(
-  //   "assets/ghost_standing0001.png",
-  //   "assets/ghost_standing0007.png"
-  // );
-  // animatedSprite1 = createSprite(500, 150, 50, 100);
-  // animatedSprite1.addAnimation("floating", animation1);
+  animation1 = loadAnimation(
+    `${CDN}cloud_breathing0001.png`,
+    `${CDN}cloud_breathing0002.png`,
+    `${CDN}cloud_breathing0003.png`,
+    `${CDN}cloud_breathing0004.png`,
+    `${CDN}cloud_breathing0005.png`,
+    `${CDN}cloud_breathing0006.png`,
+    `${CDN}cloud_breathing0007.png`,
+    `${CDN}cloud_breathing0008.png`,
+    `${CDN}cloud_breathing0009.png`
+  );
+  animatedSprite1 = createSprite(500, 150, 50, 100);
+  animatedSprite1.addAnimation("floating", animation1);
 
   // Create another sprite and associate another animation
   //   animation2 = loadAnimation(

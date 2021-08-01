@@ -1,8 +1,8 @@
 // Name any p5.js functions we use in `global` so Glitch can recognize them.
 /* global
- *    background, color, createCanvas, createSprite, drawSprites, fill, height,
- *    loadImage, loadAnimation, mouseIsPressed, mouseX, mouseY, random, text
- *    textAlign, width, windowWidth, windowHeight
+ *    background, color, createCanvas, createSprite, drawSprites, fill,
+ *    loadImage, loadAnimation, mouseIsPressed, mouseX, mouseY, random,
+ *    text, textAlign, windowWidth, windowHeight
  *    UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER
  */
 
@@ -40,7 +40,7 @@ function setup() {
     `${CDN}cloud_breathing0008.png`,
     `${CDN}cloud_breathing0009.png`
   );
-  cloudSprite = createSprite(500, 150, 50, 100);
+  cloudSprite = createSprite(500, 150);
   cloudSprite.addAnimation("breathing", cloudBreathingAnimation);
 
   // Create a "floating" animation sprite
@@ -53,7 +53,7 @@ function setup() {
     `${CDN}ghost_standing0006.png`,
     `${CDN}ghost_standing0007.png`
   );
-  ghostSprite = createSprite(700, 150, 50, 100);
+  ghostSprite = createSprite(700, 150);
   ghostSprite.addAnimation("floating", ghostStandingAnimation);
 }
 

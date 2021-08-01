@@ -7,60 +7,52 @@
  */
 
 let boxSprite;
+let image;
 let imageSprite;
+let animation1;
 let animatedSprite1;
+let animation2;
 let animatedSprite2;
 
 function setup() {
   createCanvas(400, 400);
 
-  //assets should be preloaded in the preload() function
-  //to avoid delays in the visualization
-  //but they can be loaded in setup() and draw() as well
-  var image = loadImage("assets/asterisk.png");
-  var animation = loadAnimation(
-    "assets/ghost_standing0001.png",
-    "assets/ghost_standing0007.png"
-  );
-
-  //create a sprite with a placeholder rectangle as visual component
+  // Create a sprite with a rectangle as visual component
   boxSprite = createSprite(100, 150, 50, 100);
-  //change the color of the placeholder
-  boxSprite.shapeColor = color(222, 125, 2);
-
-  //create a sprite and associate an existing image as visual component
-  //it is not necessary to specify the dimensions
-  imageSprite = createSprite(300, 150);
-  imageSprite.addImage(img);
+  boxSprite.shapeColor = color("red");
+  
+  // Create a sprite and associate an existing image as visual component
+//   image = loadImage("assets/asterisk.png");
+//   imageSprite = createSprite(300, 150);
+//   imageSprite.addImage(image);
 
   //create a sprite and associate an existing animation as visual component
-  //since a sprite can have multiple images and animations
-  //the first parameter must be a label identifying the animation
-  animatedSprite = createSprite(500, 150, 50, 100);
-  animatedSprite.addAnimation("floating", animation);
+//   animation1 = loadAnimation(
+//     "assets/ghost_standing0001.png",
+//     "assets/ghost_standing0007.png"
+//   );
+//   animatedSprite1 = createSprite(500, 150, 50, 100);
+//   animatedSprite1.addAnimation("floating", animation1);
 
-  //alternative usage:
-  //create a sprite and associate a non existing animation to it
-  //the first parameter must be a label
-  anotherAnimatedSprite = createSprite(700, 150, 50, 100);
-  anotherAnimatedSprite.addAnimation(
-    "breathing",
-    "assets/cloud_breathing0001.png",
-    "assets/cloud_breathing0005.png"
-  );
+//   animation2 = loadAnimation(
+//     "assets/cloud_breathing0001.png",
+//     "assets/cloud_breathing0005.png"
+//   );
+//   animatedSprite2 = createSprite(700, 150, 50, 100);
+//   animatedSprite2.addAnimation("breathing", animation2);
 }
 
 function draw() {
   background(255);
 
   fill(0);
-  textAlign(CENTER);
-  text("Click to create a new sprite", width / 2, height / 2);
+  // textAlign(CENTER);
+  // text("Click to create a new sprite", width / 2, height / 2);
   //draw all the sprites added to the sketch so far
   //the positions will be updated automatically at every cycle
   drawSprites();
 }
-
+/*
 function mousePressed() {
   //create a sprite at the mouse position and store it in a temporary variable
   var s = createSprite(mouseX, mouseY, 30, 30);
@@ -87,8 +79,8 @@ function draw2() {
   //accessible from the .animation property of the sprite
 
   //stop/play a sprite animation
-  if (mouseIsPressed) animatedSprite.animation.stop();
-  else animatedSprite.animation.play();
+  if (mouseIsPressed) animatedSprite1.animation.stop();
+  else animatedSprite1.animation.play();
 
   //change the frame in relation to the mouse x position
   // var frame = round(map(mouseX, 0, width, 0, anotherAnimatedSprite.animation.getLastFrame()));
@@ -99,3 +91,4 @@ function draw2() {
   //draw all the sprites
   drawSprites();
 }
+*/

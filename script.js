@@ -27,12 +27,12 @@ function setup() {
   imageSprite.addImage(image);
 
   // Create a sprite and associate an animation
-    animation1 = loadAnimation(
-      "assets/ghost_standing0001.png",
-      "assets/ghost_standing0007.png"
-    );
-    animatedSprite1 = createSprite(500, 150, 50, 100);
-    animatedSprite1.addAnimation("floating", animation1);
+  // animation1 = loadAnimation(
+  //   "assets/ghost_standing0001.png",
+  //   "assets/ghost_standing0007.png"
+  // );
+  // animatedSprite1 = createSprite(500, 150, 50, 100);
+  // animatedSprite1.addAnimation("floating", animation1);
 
   // Create another sprite and associate another animation
   //   animation2 = loadAnimation(

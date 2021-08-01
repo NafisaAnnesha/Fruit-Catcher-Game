@@ -1,15 +1,14 @@
 // Name any p5.js functions we use in `global` so Glitch can recognize them.
 /* global
- *    background, color, createCanvas, createSprite, drawSprites, fill,
- *    loadImage, loadAnimation, mouseIsPressed, mouseX, mouseY, random,
- *    text, textAlign, windowWidth, windowHeight
+ *    background, color, createCanvas, createSprite, drawSprites, loadImage,
+ *    loadAnimation, windowWidth, windowHeight
  *    UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER
  */
 
 const CDN = "https://cdn.glitch.com/eeb7d150-fc97-47a5-a1d3-a53d7d323bbe%2F";
 
 let boxSprite;
-let image;
+let asteriskImage;
 let asteriskSprite;
 let cloudBreathingAnimation;
 let cloudSprite;
@@ -24,9 +23,9 @@ function setup() {
   boxSprite.shapeColor = color("red");
 
   // Create an image sprite
-  image = loadImage(`${CDN}asterisk.png`);
+  asteriskImage = loadImage(`${CDN}asterisk.png`);
   asteriskSprite = createSprite(300, 150);
-  asteriskSprite.addImage(image);
+  asteriskSprite.addImage(asteriskImage);
 
   // Create a "breathing" animation sprite
   cloudBreathingAnimation = loadAnimation(
@@ -62,24 +61,3 @@ function draw() {
 
   drawSprites();
 }
-/*
-function draw2() {
-  background(255, 255, 255);
-
-  //all the methods and properties of the current animation will be
-  //accessible from the .animation property of the sprite
-
-  //stop/play a sprite animation
-  if (mouseIsPressed) cloudSprite.animation.stop();
-  else cloudSprite.animation.play();
-
-  //change the frame in relation to the mouse x position
-  // var frame = round(map(mouseX, 0, width, 0, anotherAnimatedSprite.animation.getLastFrame()));
-  //note: frames must be integer numbers so I have to round the result of map
-
-  // anotherAnimatedSprite.animation.changeFrame(frame);
-
-  //draw all the sprites
-  drawSprites();
-}
-*/

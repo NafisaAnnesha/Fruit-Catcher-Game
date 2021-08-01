@@ -1,16 +1,15 @@
 // Name any p5.js functions we use in `global` so Glitch can recognize them.
 /* global
- *    background, color, createCanvas, createSprite, drawSprites, fill,
- *    loadImage, loadAnimation, mouseIsPressed, mouseX, mouseY, random,
- *    text, textAlign, windowWidth, windowHeight, width, height
+ *    background, createCanvas, createSprite, drawSprites, loadAnimation,
+ *    windowWidth, windowHeight
  *    UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER
  */
 
 const CDN = "https://cdn.glitch.com/eeb7d150-fc97-47a5-a1d3-a53d7d323bbe%2F";
 
 let velocity;
-let sprite;
 let animation;
+let sprite;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -29,7 +28,7 @@ function setup() {
     `${CDN}cloud_breathing0009.png`
   );
 
-  sprite = createSprite(400, 200, 50, 50);
+  sprite = createSprite(400, 200);
   sprite.addAnimation("breathing", animation);
   sprite.velocity.x = velocity;
   sprite.velocity.y = -velocity;
@@ -41,11 +40,11 @@ function draw() {
   console.log("width", sprite.width);
   console.log("height", sprite.height);
 
-  if (sprite.position.x < 0 || sprite.position.x > width) {
+  if (sprite.position.x < 0 || sprite.position.x > windowWidth) {
     sprite.velocity.x = -1 * sprite.velocity.x;
   }
 
-  if (sprite.position.y < 0 || sprite.position.y > height) {
+  if (sprite.position.y < 0 || sprite.position.y > windowHeight) {
     sprite.velocity.y = -1 * sprite.velocity.y;
   }
 

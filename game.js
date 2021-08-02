@@ -4,8 +4,23 @@
  *    loadAnimation, windowWidth, windowHeight
  *    UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle
  */
+let fruits;
+let numFruits;
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);}
+  createCanvas(windowWidth, windowHeight);
+  
+  fruits = [];
+  
+
+}
+
+class Fruit {
+  constructor () {
+    this.
+  }
+}
+
 function draw() {
   background(255);
 
@@ -14,6 +29,16 @@ function draw() {
 
  
 }
+
 class Level{
+  constructor(button, bg){
+    this.button = button;
+    this.background = bg;
+  }
+  
   
 }
+let bg = loadImage()
+
+let welcomeScreen = new Level()
+

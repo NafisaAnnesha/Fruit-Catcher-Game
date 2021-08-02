@@ -2,32 +2,54 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *    loadAnimation, windowWidth, windowHeight
- *    UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle
+ *    createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill
  */
 let fruits;
-let numFruits;
+let numFruit = 3;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   
   fruits = [];
   
-
+  for (let i = 0; i < numFruit; i++) {
+    let newFruit = new Fruit();
+    fruits.push(newFruit);
+  }
 }
 
 class Fruit {
   constructor () {
-    this.
+    this.x = random(width);
+    this.y = 0;
+    this.radius = random(20, 30);
+    this.fallSpeed = random(0.5, 1);
   }
-}
+  
+  move() {
+    this.y += this.fallSpeed;
+    
+    if (this.y > height) {
+      this.y = 0;
+      this.x = random(width);
+    }
+  }
+  
+  display() {
+    noStroke();
+    fill('red') // PLACEHOLDER, replace with image
+    ellipse(this.x, this.y, this.radius);
+  }
+} // end of Fruit
 
 function draw() {
   background(255);
 
-
-
-
- 
+  for (let i = 0; i < fruits.length; i++) {
+    let fruit = fruits[i];
+    fruit.move();
+    fruit.display()
+  }
 }
 
 class Level{
@@ -38,7 +60,8 @@ class Level{
   
   
 }
-let bg = loadImage()
-
-let welcomeScreen = new Level()
+let bg = loadImage("https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627946598416")
+let button = createButton('click me')
+  button.position(0, 0);
+let welcomeScreen = new Level(bg, button)
 

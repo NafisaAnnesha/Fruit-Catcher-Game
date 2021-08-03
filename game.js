@@ -161,9 +161,9 @@ bg1 = background(bgImg1, height, width)
 let welcomeScreen = new Level( bg1)
 let level1 = new Level( bg2)
 
-function checkCollisions() {
-  // Fruits hit the character.
-  let hit = collideFruitsCharacter(
+// function checkCollisions() {
+//   // Fruits hit the character.
+//  // let hit = collideEllipseCharacter(
     
-  )
-}
+//   )
+// }

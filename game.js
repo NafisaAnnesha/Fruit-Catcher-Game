@@ -104,7 +104,7 @@ button1.mousePressed(()  => pressed = true)
     fruit.display();
   }
    fill(200, 80, 80);
-image(img, 400,400,100,150)
+image(img, 300,300,100,150)
 
    }
 

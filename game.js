@@ -2,7 +2,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *    loadAnimation, windowWidth, windowHeight, image, displayScore
- *   width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill
+ *   width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX
  */
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
@@ -19,6 +19,7 @@ let button2
 let pressed = false;
 let bgImg1;
 let bgImg2;
+let imgX;
 
 function preLoad() {
   watermelon = loadImage(
@@ -63,6 +64,8 @@ button1.position(300,400)
   for (let i = 0; i < numFruit; i++) {
     let newFruit = new Fruit();
     fruits.push(newFruit);
+    
+    imgX = 320;
   }
 }
 
@@ -105,6 +108,9 @@ button1.mousePressed(()  => pressed = true)
   }
    fill(200, 80, 80);
 image(img, 300,300,100,150)
+    
+    // Move the mouse to the right and left to move the character. 
+    image(img, mouseX - 50,  )
 
    }
 

@@ -14,20 +14,21 @@ let basket;
 let img;
 
 function preLoad() {
-  watermelon = loadImage("assets/Watermelon.png");
-  pear = loadImage("assets/Pear.png");
-  orange = loadImage("assets/Orange.png");
-  lemon = loadImage("assets/Lemon.png");
-  cherry = loadImage("assets/Cherry.png");
-  banana = loadImage("assets/Banana.png");
-  apple = loadImage("assets/Apple.png");
+loadImage("assets/Watermelon.png", watermelon => image(watermelon, 0, 0));
+// loadImage("assets/Pear.png", => {image(,0, 0)});
+// loadImage("assets/Orange.png", => {image(,0, 0)});
+// loadImage("assets/Lemon.png", => {image(,0, 0)});
+// loadImage("assets/Cherry.png", => {image(,0, 0)});
+// loadImage("assets/Banana.png", => {image(,0, 0)});
+// loadImage("assets/Apple.png", => {image(,0, 0)});
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
   // IMAGES
-  // image(watermelon, 0, 0);
+  
+
 
   // here we use a callback to display the image after loading. 
   img = loadImage(

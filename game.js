@@ -55,7 +55,7 @@ button1.position(300,400)
 
   // here we use a callback to display the image after loading.
   img = loadImage(
-    "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FfruitCollector.jpg?v=1627949883831"
+   'https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fa781dc306629a13c363acbbaaafbc2b2.png?v=1627957317192'
   );
 
   fruits = [];
@@ -71,7 +71,7 @@ class Fruit {
     this.x = random(width);
     this.y = 0;
     this.radius = random(20, 30);
-    this.fallSpeed = random(0.5, 1);
+    this.fallSpeed = random(1, 1);
   }
 
   move() {
@@ -98,26 +98,28 @@ button1.mousePressed(()  => pressed = true)
   if (pressed) {
    level1.display2()
     button1.position(880,880)
-
-   }
-
-  for (let i = 0; i < fruits.length; i++) {
+     for (let i = 0; i < fruits.length; i++) {
     let fruit = fruits[i];
     fruit.move();
     fruit.display();
   }
+   fill(200, 80, 80);
+image(img, 400,400,100,150)
 
-  // fruitCollector image.
-  image(img, 320, 390, 100, 100);
+   }
 
-  // Images
-  image(watermelon, 0, 0, 1150 / (scale + 4), 475 / (scale + 4));
-  image(pear, 0, 0, 239 / scale, 359 / scale);
-  image(orange, 0, 0, 239 / scale, 237 / scale);
-  image(lemon, 250, 0, 212 / scale, 286 / scale);
-  image(cherry, 150, 0, 686 / scale, 444 / scale);
-  image(banana, 140, 0, 327 / scale, 420 / scale);
-  image(apple, 70, 0, 239 / scale, 270 / scale);
+ 
+//   // fruitCollector image.
+//   image(img, 320, 390, 100, 100);
+
+//   // Images
+//   image(watermelon, 0, 0, 1150 / (scale + 4), 475 / (scale + 4));
+//   image(pear, 0, 0, 239 / scale, 359 / scale);
+//   image(orange, 0, 0, 239 / scale, 237 / scale);
+//   image(lemon, 250, 0, 212 / scale, 286 / scale);
+//   image(cherry, 150, 0, 686 / scale, 444 / scale);
+//   image(banana, 140, 0, 327 / scale, 420 / scale);
+//   image(apple, 70, 0, 239 / scale, 270 / scale);
 }
 
 class Level{

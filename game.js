@@ -19,7 +19,6 @@ let button2
 let pressed = false;
 let bgImg1;
 let bgImg2;
-let imgX;
 let characterX; 
 let characterY; 
 let characterZ;
@@ -71,7 +70,7 @@ button1.position(300,400)
   
   }
   
-   imgX = 320;
+   
     characterX = 300; 
     characterY = 100; 
     characterZ = 150; 

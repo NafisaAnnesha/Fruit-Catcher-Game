@@ -71,7 +71,7 @@ class Fruit {
     this.x = random(width);
     this.y = 0;
     this.radius = random(20, 30);
-    this.fallSpeed = random(1, 1);
+    this.fallSpeed = random(1.5, 1);
   }
 
   move() {

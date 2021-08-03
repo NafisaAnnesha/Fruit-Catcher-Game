@@ -21,7 +21,8 @@ let bgImg1;
 let bgImg2;
 let imgX;
 let characterX; 
-
+let characterY; 
+let characterZ;
 
 function preLoad() {
   watermelon = loadImage(
@@ -57,18 +58,23 @@ button1.position(300,400)
  bgImg2 = loadImage('https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg2.jpeg?v=1627956440506')
 
   // here we use a callback to display the image after loading.
+  // character image.
   character = loadImage(
    'https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fa781dc306629a13c363acbbaaafbc2b2.png?v=1627957317192'
-  );
+  ); // end of character image. 
 
   fruits = [];
 
   for (let i = 0; i < numFruit; i++) {
     let newFruit = new Fruit();
     fruits.push(newFruit);
-    
-    imgX = 320;
+  
   }
+  
+   imgX = 320;
+    characterX = 300; 
+    characterY = 100; 
+    characterZ = 150; 
 }
 
 class Fruit {
@@ -111,8 +117,8 @@ button1.mousePressed(()  => pressed = true)
     
     // character movement according to the mouse.
    fill(200, 80, 80);
-image(character, mouseX - 50, 300, 100, 150);
-    
+image(character, mouseX - 50, characterX, characterY, characterZ);
+ // end of charater movement.    
     
 
    }

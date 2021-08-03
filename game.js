@@ -1,7 +1,7 @@
 // Name any p5.js functions we use in `global` so Glitch can recognize them.
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
- *    loadAnimation, windowWidth, windowHeight, image
+ *    loadAnimation, windowWidth, windowHeight, image, displayScore
  *    createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill
  */
 
@@ -73,6 +73,8 @@ function draw() {
     let fruit = fruits[i];
     fruit.move();
     fruit.display();
+    
+
   }
   
   // fruitCollector image. 

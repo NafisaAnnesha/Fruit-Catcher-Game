@@ -2,7 +2,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *    loadAnimation, windowWidth, windowHeight, image, displayScore
- *    createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill
+ *   width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill
  */
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
@@ -12,6 +12,13 @@ let numFruit = 3;
 let score = 0;
 let basket;
 let img;
+let bg1 
+let button1
+let bg2
+let button2
+let pressed = false;
+let bgImg1;
+let bgImg2;
 
 function preLoad() {
   watermelon = loadImage(
@@ -39,6 +46,12 @@ function preLoad() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  button1 = createButton("click me ")
+
+
+button1.position(300,400)
+ bgImg1 = loadImage('https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954')
+ bgImg2 = loadImage('https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg2.jpeg?v=1627956440506')
 
   // here we use a callback to display the image after loading.
   img = loadImage(
@@ -78,7 +91,15 @@ class Fruit {
 } // end of Fruit
 
 function draw() {
-  background(255);
+   welcomeScreen.display1()
+  
+  
+button1.mousePressed(()  => pressed = true)
+  if (pressed) {
+   level1.display2()
+    button1.position(880,880)
+
+   }
 
   for (let i = 0; i < fruits.length; i++) {
     let fruit = fruits[i];
@@ -99,15 +120,27 @@ function draw() {
   image(apple, 70, 0, 239 / scale, 270 / scale);
 }
 
-class Level {
-  constructor(button, bg) {
-    this.button = button;
+class Level{
+  constructor(bg){
+    //this.button = button;
     this.background = bg;
   }
+ display1(){
+bg1 = background(bgImg1, height, width)
+
+
 }
-let bg = loadImage(
-  "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627946598416"
-);
-let button = createButton("click me");
-button.position(0, 0);
-let welcomeScreen = new Level(bg, button);
+
+   display2(){
+       
+    bg2 = background(bgImg2, height, width) 
+     button2 = createButton("play")
+     button2.position(300,550)
+      
+   }
+
+}
+
+let welcomeScreen = new Level( bg1)
+let level1 = new Level( bg2)
+

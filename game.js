@@ -20,6 +20,8 @@ let pressed = false;
 let bgImg1;
 let bgImg2;
 let imgX;
+let characterX; 
+
 
 function preLoad() {
   watermelon = loadImage(

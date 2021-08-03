@@ -1,7 +1,7 @@
 // Name any p5.js functions we use in `global` so Glitch can recognize them.
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
- *    loadAnimation, windowWidth, windowHeight, image, displayScore
+ *    loadAnimation, windowWidth, windowHeight, image, displayScore, collideFruitsCharacter
  *   width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX
  */
 
@@ -161,3 +161,9 @@ bg1 = background(bgImg1, height, width)
 let welcomeScreen = new Level( bg1)
 let level1 = new Level( bg2)
 
+function checkCollisions() {
+  // Fruits hit the character.
+  let hit = collideFruitsCharacter(
+    
+  )
+}

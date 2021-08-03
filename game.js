@@ -4,11 +4,22 @@
  *    loadAnimation, windowWidth, windowHeight
  *    createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill
  */
+
+let watermelon;
+
 let fruits;
 let numFruit = 3;
+let score = 0;
+
+function preLoad() {
+  watermelon = loadImage("assets/Watermelon.png");
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  
+  // IMAGES
+  // image(watermelon, 0, 0);
   
   fruits = [];
   

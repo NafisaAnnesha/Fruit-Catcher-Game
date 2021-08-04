@@ -81,6 +81,9 @@ function setup() {
   // character image.
   character = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fa781dc306629a13c363acbbaaafbc2b2.png?v=1627957317192"
+    
+    // Fruit images
+    
   ); // end of character image.
 
   fruits = [];
@@ -259,7 +262,7 @@ function checkLost() {
 }
 function river() {
   fill(53, 195, 242);
-  rect(0, 550, width, 50);
+  rect(0, width, width, 50);
 }
 // function resetScore(){
 //   score =0;

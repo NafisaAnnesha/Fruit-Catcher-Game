@@ -2,7 +2,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *    loadAnimation, windowWidth, windowHeight, image, displayScore
- *  collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX
+ *  textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX
  */
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
@@ -26,6 +26,7 @@ let characterZ;
 let fruitX;
 let fruitY;
 let fruitR;
+let count = 0;
 
 function preLoad() {
   watermelon = loadImage(
@@ -78,7 +79,7 @@ function setup() {
     let newFruit = new Fruit();
     fruits.push(newFruit);
 
-    
+     count == ;
     characterX = 300;
     characterY = 100;
     characterZ = 150;
@@ -125,6 +126,7 @@ function draw() {
       let fruit = fruits[i];
       fruit.move();
       fruit.display();
+     
     }
 
     // character movement according to the mouse.
@@ -159,7 +161,9 @@ class Level {
     bg2 = background(bgImg2, height, width);
     button2 = createButton("play");
     button2.position(300, 550);
-    
+    textSize(35)
+    fill(161, 21, 84)
+    text(`Fruits Collected: ${score}`, 10, 30);
   }
 }
 
@@ -188,6 +192,7 @@ function checkCollisions() {
     }
     
   }
+  
 
  
 }

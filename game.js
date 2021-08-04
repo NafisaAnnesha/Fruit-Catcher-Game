@@ -8,7 +8,7 @@
 let watermelon, pear, orange, lemon, cherry, banana, apple;
 let scale = 7;
 let fruits;
-let numFruit = 3;
+let numFruit =3 ;
 let score = 0;
 let basket;
 let character;
@@ -30,6 +30,7 @@ let fruitX;
 let fruitY;
 let fruitR;
 let count = 0;
+let fallSpeed;
 
 function preLoad() {
   watermelon = loadImage(
@@ -57,11 +58,12 @@ function preLoad() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  
   button1 = createButton("click me ");
   fruitX = random(width);
   fruitY = 0;
   fruitR = random(20, 30)
-
+  fallSpeed = random(1.5,1)
   button1.position(300, 400);
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
@@ -93,7 +95,7 @@ class Fruit {
     this.x = fruitX;
     this.y = fruitY;
     this.radius = fruitR;
-    this.fallSpeed = random(1.5, 1);
+    this.fallSpeed = fallSpeed;
     this.collected = false;
     this.lost = false;
   }
@@ -151,6 +153,7 @@ function draw() {
   if(score===5){
     
     nextLevel = true;
+    resetScore();
   }
 }
   //   // fruitCollector image.
@@ -189,12 +192,13 @@ class Level {
   }
   display3(){
     
-    score = 0;
+   
     
     bg3 = background(bgImg3)
-    text(`Fruits Collected: ${score}`, 10, 30);
+   
         river();
-    checkScore;
+    checkScore();
+     text(`Fruits Collected: ${score}`, 10, 30);
      for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
       fruit.move();
@@ -210,6 +214,7 @@ let level1 = new Level(bg2);
 let level2 = new Level(bg3)
 
 function checkScore() {
+  
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
     let hit = collideRectCircle(
@@ -228,8 +233,10 @@ function checkScore() {
       //console.log(score);
     }
   }
+  
 }
 function checkLost() {
+ 
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
     let lost = collideRectCircle(
@@ -247,5 +254,10 @@ function checkLost() {
 }
    function river() {
  fill( 53, 195, 242)
-  rect(0, 500, width, 50);
+  rect(0, 530, width, 50);
+}
+function resetScore(){
+  score =0;
+  fallSpeed = random(1.5,2)
+  
 }

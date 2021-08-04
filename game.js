@@ -2,7 +2,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *    loadAnimation, windowWidth, windowHeight, image, displayScore
- *  rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX
+ *  rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
@@ -33,6 +33,11 @@ let count = 0;
 let fallSpeed;
 let fruit1;
 let fruit2;
+let isJumping; 
+let jumpHeight; 
+let jumpDirection;
+
+// Images. 
 function preLoad() {
   watermelon = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FWatermelon.png?v=1627948820847"
@@ -94,10 +99,13 @@ function setup() {
     fruits.push(newFruit);
  
 
-    characterX = 100;
+    characterX = height - 250;
     characterY = 100;
     characterZ = 100;
   }
+  isJumping = false; 
+  jumpHeight = 50; 
+  jumpDirection = "UP"; 
 }
 
 class Fruit {
@@ -168,6 +176,21 @@ function draw() {
     level2.display3();
   }
 }
+
+if (isJumping) {
+    if (characterX > height - 250 - jumpHeight && jumpDirection == "UP") {
+      characterX -= 5;
+    } else if (characterX <= height - 250 - jumpHeight) {
+      jumpDirection = "DOWN";
+      characterX += 5;
+    } else if (characterX < height - 250 && jumpDirection == "DOWN") {
+      characterX += 5;
+    } else if (characterX >= height - 250) {
+      isJumping = false;
+      jumpDirection = "UP";
+      characterX = height - 250;
+    }
+  }
 //   // fruitCollector image.
 //   image(img, 320, 390, 100, 100);
 
@@ -269,3 +292,11 @@ function river() {
 //   fallSpeed = random(1.5,2)
      
 // }
+
+// Use up arrow to jump. 
+function keyPressed() {
+  console.log(keyCode);
+  if (keyCode == UP_ARROW) {
+    isJumping = true;
+  }
+}

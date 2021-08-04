@@ -31,7 +31,8 @@ let fruitY;
 let fruitR;
 let count = 0;
 let fallSpeed;
-
+let fruit1;
+let fruit2;
 function preLoad() {
   watermelon = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FWatermelon.png?v=1627948820847"
@@ -59,10 +60,12 @@ function preLoad() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   numFruit = 3;
+  fruit1 = loadImage('https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FOrange.png?v=1627948802920')
+  fruit2 = loadImage('https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FLemon.png?v=1627948795527')
   button1 = createButton("click me ");
   fruitX = random(width);
   fruitY = random(height);
-  fruitR = random(20, 30);
+  fruitR = random(50,60);
   fallSpeed = random(1.5, 2);
   button1.position(300, 400);
   bgImg1 = loadImage(
@@ -84,7 +87,9 @@ function setup() {
 
   for (let i = 0; i < numFruit; i++) {
     let newFruit = new Fruit();
+    let newFruit2 = new Fruit(fruit2)
     fruits.push(newFruit);
+    
 
     characterX = 300;
     characterY = 100;
@@ -94,12 +99,16 @@ function setup() {
 
 class Fruit {
   constructor() {
+    this.image = fruit1;
     this.x = fruitX;
     this.y = fruitY;
     this.radius = fruitR;
+    this.width = 40;
+    this.height = 5;
     this.fallSpeed = fallSpeed;
     this.collected = false;
     this.lost = false;
+    
   }
 
   move() {
@@ -117,7 +126,7 @@ class Fruit {
     if (!this.collected && !this.lost) {
       noStroke();
       fill("red"); // PLACEHOLDER, replace with image
-      ellipse(this.x, this.y, this.radius);
+      image(this.image, this.x, this.y, this.radius, this.width, this.height);
     }
   }
 } // end of Fruit

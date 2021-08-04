@@ -16,9 +16,12 @@ let bg1;
 let button1;
 let bg2;
 let button2;
+let bg3;
+let button3;
 let pressed = false;
 let bgImg1;
 let bgImg2;
+let bgImg3;
 
 let characterX;
 let characterY;
@@ -66,7 +69,7 @@ function setup() {
   bgImg2 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg2.jpeg?v=1627956440506"
   );
-
+ bgImg3 = loadImage('https://cdn.glitch.com/c2cb5413-90bd-4f0b-8fba-70efb1ea9018%2Fbg3.png?v=1628043067860')
   // here we use a callback to display the image after loading.
   // character image.
   character = loadImage(
@@ -129,13 +132,22 @@ function draw() {
       fruit.move();
       fruit.display();
     }
-
+// if (score === 5){
+//   level2.display3();
+//    for (let i = 0; i < fruits.length; i++) {
+//       let fruit = fruits[i];
+//       fruit.move();
+//       fruit.display();
+// }
     // character movement according to the mouse.
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
     // end of charater movem
   }
-
+  if(score===5){
+    level3.display3()
+  }
+}
   //   // fruitCollector image.
   //   image(img, 320, 390, 100, 100);
 
@@ -147,7 +159,7 @@ function draw() {
   //   image(cherry, 150, 0, 686 / scale, 444 / scale);
   //   image(banana, 140, 0, 327 / scale, 420 / scale);
   //   image(apple, 70, 0, 239 / scale, 270 / scale);
-}
+
 
 class Level {
   constructor(bg) {
@@ -169,12 +181,23 @@ class Level {
  fill( 53, 195, 242)
   rect(0, 500, width, 50);
 }
+    
     river()
+  }
+  display3(){
+    score = 0;
+    bg3 = background(bgImg3)
+    text(`Fruits Collected: ${score}`, 10, 30);
+      function river() {
+ fill( 53, 195, 242)
+  rect(0, 500, width, 50);
+}
   }
 }
 
 let welcomeScreen = new Level(bg1);
 let level1 = new Level(bg2);
+let level2 = new Level(bg3)
 
 function checkCollisions() {
   for (let i = 0; i < numFruit; i++) {
@@ -191,7 +214,7 @@ function checkCollisions() {
     if (hit && !fruit.collected) {
       fruit.collected = true;
       score = score + 1;
-      numFruit++;
+     
       //console.log(score);
     }
   }

@@ -2,7 +2,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *    loadAnimation, windowWidth, windowHeight, image, displayScore
- *  textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX
+ *  rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX
  */
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
@@ -92,6 +92,7 @@ class Fruit {
     this.radius = fruitR;
     this.fallSpeed = random(1.5, 1);
     this.collected = false;
+    this.lost = false;
   }
 
   move() {
@@ -101,6 +102,7 @@ class Fruit {
       this.y = 0;
       this.x = random(width);
       this.collected = false;
+      this.lost = false;
     }
   }
 
@@ -117,6 +119,7 @@ function draw() {
   welcomeScreen.display1();
 
   checkCollisions();
+  checkLost();
   button1.mousePressed(() => (pressed = true));
   if (pressed) {
     level1.display2();
@@ -162,6 +165,11 @@ class Level {
     textSize(35);
     fill(161, 21, 84);
     text(`Fruits Collected: ${score}`, 10, 30);
+    function river() {
+ fill( 53, 195, 242)
+  rect(0, 500, width, 50);
+}
+    river()
   }
 }
 
@@ -184,6 +192,22 @@ function checkCollisions() {
       fruit.collected = true;
       score = score + 1;
       console.log(score);
+    }
+  }
+}
+function checkLost() {
+  for (let i = 0; i < numFruit; i++) {
+    let fruit = fruits[i];
+    let lost = collideRectCircle(
+      0, 500, width, 50,
+     fruit.x,
+      fruit.y,
+      fruit.radius
+    );
+    if (lost && !fruit.lost) {
+      fruit.lost = true;
+      count = count + 1;
+      console.log(count);
     }
   }
 }

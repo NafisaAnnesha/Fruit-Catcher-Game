@@ -91,9 +91,9 @@ function setup() {
     fruits.push(newFruit);
  
 
-    characterX = 300;
+    characterX = 430;
     characterY = 100;
-    characterZ = 150;
+    characterZ = 100;
   }
 }
 
@@ -259,7 +259,7 @@ function checkLost() {
 }
 function river() {
   fill(53, 195, 242);
-  rect(0, 530, width, 50);
+  rect(0, 550, width, 50);
 }
 // function resetScore(){
 //   score =0;

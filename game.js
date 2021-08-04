@@ -8,7 +8,7 @@
 let watermelon, pear, orange, lemon, cherry, banana, apple;
 let scale = 7;
 let fruits;
-let numFruit =3 ;
+let numFruit;
 let score = 0;
 let basket;
 let character;
@@ -58,12 +58,12 @@ function preLoad() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  
+  numFruit = 1
   button1 = createButton("click me ");
   fruitX = random(width);
-  fruitY = 0;
+  fruitY = random(height);
   fruitR = random(20, 30)
-  fallSpeed = random(1.5,1)
+  fallSpeed = random(1.5,2)
   button1.position(300, 400);
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
@@ -88,6 +88,8 @@ function setup() {
     characterY = 100;
     characterZ = 150;
   }
+
+   
 }
 
 class Fruit {

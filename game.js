@@ -94,7 +94,7 @@ function setup() {
     fruits.push(newFruit);
  
 
-    characterX = ;
+    characterX = 100;
     characterY = 100;
     characterZ = 100;
   }

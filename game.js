@@ -29,12 +29,8 @@ let characterZ;
 let fruitX;
 let fruitY;
 let fruitR;
-let badFruitX;
-let badFruitY;
-let badFruitR;
 let count = 0;
 let fallSpeed;
-let badFruits = [];
 
 function preLoad() {
   watermelon = loadImage(
@@ -67,12 +63,8 @@ function setup() {
   fruitX = random(width);
   fruitY = random(height);
   fruitR = random(20, 30);
-  badFruitX = random(width);
-  badFruitY = random(height);
-  badFruitR = random(20, 30);
   fallSpeed = random(1.5, 2);
   button1.position(300, 400);
-  
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
   );
@@ -265,32 +257,3 @@ function river() {
 //   fallSpeed = random(1.5,2)
      
 // }
-class obstacles{
-  
-   constructor() {
-    this.x = badFruitX;
-    this.y = badFruitY;
-    this.radius = badFruitR;
-    this.fallSpeed = fallSpeed;
-    this.collected = false;}
-  
-  
-    dropBadFruit() {
-    this.y += this.fallSpeed;
-
-    if (this.y > height) {
-      this.y = random(0, -40);
-      this.x = random(width);
-      this.collected = false;
-      this.lost = false;
-    }
-  }
-
-  obstaclesDisplay() {
-    if (!this.collected && !this.lost) {
-      noStroke();
-      fill("blue"); // PLACEHOLDER, replace with image
-      ellipse(this.x, this.y, this.radius);
-    }
-  }
-} // end of Fruit

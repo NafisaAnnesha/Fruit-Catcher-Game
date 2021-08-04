@@ -87,9 +87,9 @@ function setup() {
 
   for (let i = 0; i < numFruit; i++) {
     let newFruit = new Fruit();
-    let newFruit2 = new Fruit(fruit2)
+   
     fruits.push(newFruit);
-    
+ 
 
     characterX = 300;
     characterY = 100;

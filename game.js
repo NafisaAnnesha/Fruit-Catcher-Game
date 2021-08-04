@@ -191,7 +191,7 @@ function checkCollisions() {
     if (hit && !fruit.collected) {
       fruit.collected = true;
       score = score + 1;
-      console.log(score);
+      //console.log(score);
     }
   }
 }
@@ -204,7 +204,7 @@ function checkLost() {
       fruit.y,
       fruit.radius
     );
-    if (lost && !fruit.lost) {
+    if (lost && !fruit.lost && !fruit.collected) {
       fruit.lost = true;
       count = count + 1;
       console.log(count);

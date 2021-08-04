@@ -58,7 +58,7 @@ function preLoad() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  numFruit = 1
+  numFruit = 3
   button1 = createButton("click me ");
   fruitX = random(width);
   fruitY = random(height);
@@ -83,6 +83,7 @@ function setup() {
   for (let i = 0; i < numFruit; i++) {
     let newFruit = new Fruit();
     fruits.push(newFruit);
+   
       
     characterX = 300;
     characterY = 100;
@@ -106,7 +107,7 @@ class Fruit {
     this.y += this.fallSpeed;
 
     if (this.y > height) {
-      this.y = 0;
+      this.y = random(0,-40);
       this.x = random(width);
       this.collected = false;
       this.lost = false;
@@ -147,16 +148,21 @@ function draw() {
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
     // end of charater movem
+ 
+  
+  
+  
+  }
+       if(score===5){
+       resetScore();
+    nextLevel = true;
+   
   }
   if(nextLevel){
     level2.display3();
     
   }
-  if(score===5){
-    
-    nextLevel = true;
-    resetScore();
-  }
+ 
 }
   //   // fruitCollector image.
   //   image(img, 320, 390, 100, 100);
@@ -191,21 +197,23 @@ class Level {
  
     
     river()
+ 
   }
   display3(){
     
    
-    
+      
     bg3 = background(bgImg3)
    
         river();
-    checkScore();
-     text(`Fruits Collected: ${score}`, 10, 30);
+    
+  
      for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
       fruit.move();
       fruit.display();}
-  
+  checkScore();
+       text(`Fruits Collected: ${score}`, 10, 30);
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);}
  

@@ -29,8 +29,12 @@ let characterZ;
 let fruitX;
 let fruitY;
 let fruitR;
+let badFruitX;
+let badFruitY;
+let badFruitR;
 let count = 0;
 let fallSpeed;
+let badFruits = [];
 
 function preLoad() {
   watermelon = loadImage(
@@ -58,20 +62,26 @@ function preLoad() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  numFruit = 3
+  numFruit = 3;
   button1 = createButton("click me ");
   fruitX = random(width);
   fruitY = random(height);
-  fruitR = random(20, 30)
-  fallSpeed = random(1.5,2)
+  fruitR = random(20, 30);
+  badFruitX = random(width);
+  badFruitY = random(height);
+  badFruitR = random(20, 30);
+  fallSpeed = random(1.5, 2);
   button1.position(300, 400);
+  
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
   );
   bgImg2 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg2.jpeg?v=1627956440506"
   );
- bgImg3 = loadImage('https://cdn.glitch.com/c2cb5413-90bd-4f0b-8fba-70efb1ea9018%2Fbg3.png?v=1628043067860')
+  bgImg3 = loadImage(
+    "https://cdn.glitch.com/c2cb5413-90bd-4f0b-8fba-70efb1ea9018%2Fbg3.png?v=1628043067860"
+  );
   // here we use a callback to display the image after loading.
   // character image.
   character = loadImage(
@@ -83,14 +93,11 @@ function setup() {
   for (let i = 0; i < numFruit; i++) {
     let newFruit = new Fruit();
     fruits.push(newFruit);
-   
-      
+
     characterX = 300;
     characterY = 100;
     characterZ = 150;
   }
-
-   
 }
 
 class Fruit {
@@ -107,7 +114,7 @@ class Fruit {
     this.y += this.fallSpeed;
 
     if (this.y > height) {
-      this.y = random(0,-40);
+      this.y = random(0, -40);
       this.x = random(width);
       this.collected = false;
       this.lost = false;
@@ -126,7 +133,6 @@ class Fruit {
 function draw() {
   welcomeScreen.display1();
 
-  
   checkLost();
   button1.mousePressed(() => (pressed = true));
   if (pressed) {
@@ -137,45 +143,38 @@ function draw() {
       fruit.move();
       fruit.display();
     }
-// if (score === 5){
-//   level2.display3();
-//    for (let i = 0; i < fruits.length; i++) {
-//       let fruit = fruits[i];
-//       fruit.move();
-//       fruit.display();
-// }
+    // if (score === 5){
+    //   level2.display3();
+    //    for (let i = 0; i < fruits.length; i++) {
+    //       let fruit = fruits[i];
+    //       fruit.move();
+    //       fruit.display();
+    // }
     // character movement according to the mouse.
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
     // end of charater movem
- 
-  
-  
-  
   }
-       if(score===5){
-       resetScore();
+  if (score === 5) {
     nextLevel = true;
-   
   }
-  if(nextLevel){
+  if (nextLevel) {
+    score;
+    fallSpeed = random(1.5, 2);
     level2.display3();
-    
   }
- 
 }
-  //   // fruitCollector image.
-  //   image(img, 320, 390, 100, 100);
+//   // fruitCollector image.
+//   image(img, 320, 390, 100, 100);
 
-  //   // Images
-  //   image(watermelon, 0, 0, 1150 / (scale + 4), 475 / (scale + 4));
-  //   image(pear, 0, 0, 239 / scale, 359 / scale);
-  //   image(orange, 0, 0, 239 / scale, 237 / scale);
-  //   image(lemon, 250, 0, 212 / scale, 286 / scale);
-  //   image(cherry, 150, 0, 686 / scale, 444 / scale);
-  //   image(banana, 140, 0, 327 / scale, 420 / scale);
-  //   image(apple, 70, 0, 239 / scale, 270 / scale);
-
+//   // Images
+//   image(watermelon, 0, 0, 1150 / (scale + 4), 475 / (scale + 4));
+//   image(pear, 0, 0, 239 / scale, 359 / scale);
+//   image(orange, 0, 0, 239 / scale, 237 / scale);
+//   image(lemon, 250, 0, 212 / scale, 286 / scale);
+//   image(cherry, 150, 0, 686 / scale, 444 / scale);
+//   image(banana, 140, 0, 327 / scale, 420 / scale);
+//   image(apple, 70, 0, 239 / scale, 270 / scale);
 
 class Level {
   constructor(bg) {
@@ -194,37 +193,31 @@ class Level {
     textSize(30);
     fill(182, 252, 3);
     text(`Fruits Collected: ${score}`, 10, 30);
- 
-    
-    river()
- 
+
+    river();
   }
-  display3(){
-    
-   
-      
-    bg3 = background(bgImg3)
-   
-        river();
-    
-  
-     for (let i = 0; i < fruits.length; i++) {
+  display3() {
+    bg3 = background(bgImg3);
+
+    river();
+
+    for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
       fruit.move();
-      fruit.display();}
-  checkScore();
-       text(`Fruits Collected: ${score}`, 10, 30);
+      fruit.display();
+    }
+    checkScore();
+    text(`Fruits Collected: ${score}`, 10, 30);
     fill(200, 80, 80);
-    image(character, mouseX - 50, characterX, characterY, characterZ);}
- 
+    image(character, mouseX - 50, characterX, characterY, characterZ);
+  }
 }
 
 let welcomeScreen = new Level(bg1);
 let level1 = new Level(bg2);
-let level2 = new Level(bg3)
+let level2 = new Level(bg3);
 
 function checkScore() {
-  
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
     let hit = collideRectCircle(
@@ -239,35 +232,65 @@ function checkScore() {
     if (hit && !fruit.collected) {
       fruit.collected = true;
       score = score + 1;
-     
+
       //console.log(score);
     }
   }
-  
 }
 function checkLost() {
- 
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
     let lost = collideRectCircle(
-      0, 500, width, 50,
-     fruit.x,
+      0,
+      500,
+      width,
+      50,
+      fruit.x,
       fruit.y,
       fruit.radius
     );
     if (lost && !fruit.lost && !fruit.collected) {
       fruit.lost = true;
-      score = score -1
+      score = score - 1;
       console.log(count);
     }
   }
 }
-   function river() {
- fill( 53, 195, 242)
+function river() {
+  fill(53, 195, 242);
   rect(0, 530, width, 50);
 }
-function resetScore(){
-  score =0;
-  fallSpeed = random(1.5,2)
+// function resetScore(){
+//   score =0;
+//   fallSpeed = random(1.5,2)
+     
+// }
+class obstacles{
   
-}
+   constructor() {
+    this.x = badFruitX;
+    this.y = badFruitY;
+    this.radius = badFruitR;
+    this.fallSpeed = fallSpeed;
+    this.collected = false;}
+  
+  
+    dropBadFruit() {
+    this.y += this.fallSpeed;
+
+    if (this.y > height) {
+      this.y = random(0, -40);
+      this.x = random(width);
+      this.collected = false;
+      this.lost = false;
+    }
+  }
+
+  obstaclesDisplay() {
+    if (!this.collected && !this.lost) {
+      noStroke();
+      fill("blue"); // PLACEHOLDER, replace with image
+      ellipse(this.x, this.y, this.radius);
+    }
+  }
+} // end of Fruit

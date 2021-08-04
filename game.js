@@ -79,7 +79,6 @@ function setup() {
     let newFruit = new Fruit();
     fruits.push(newFruit);
 
-     count == ;
     characterX = 300;
     characterY = 100;
     characterZ = 150;
@@ -126,7 +125,6 @@ function draw() {
       let fruit = fruits[i];
       fruit.move();
       fruit.display();
-     
     }
 
     // character movement according to the mouse.
@@ -161,8 +159,8 @@ class Level {
     bg2 = background(bgImg2, height, width);
     button2 = createButton("play");
     button2.position(300, 550);
-    textSize(35)
-    fill(161, 21, 84)
+    textSize(35);
+    fill(161, 21, 84);
     text(`Fruits Collected: ${score}`, 10, 30);
   }
 }
@@ -183,16 +181,9 @@ function checkCollisions() {
       fruit.radius
     );
     if (hit && !fruit.collected) {
-     
-        fruit.collected = true;
+      fruit.collected = true;
       score = score + 1;
-      console.log(score);  
-      
-    
+      console.log(score);
     }
-    
   }
-  
-
- 
 }

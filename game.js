@@ -57,7 +57,7 @@ function setup() {
   button1 = createButton("click me ");
   fruitX = random(width);
   fruitY = 0;
-  fruitR = random(20, 30);
+  fruitR = random(20, 30)
 
   button1.position(300, 400);
   bgImg1 = loadImage(
@@ -78,7 +78,7 @@ function setup() {
   for (let i = 0; i < numFruit; i++) {
     let newFruit = new Fruit();
     fruits.push(newFruit);
-
+      
     characterX = 300;
     characterY = 100;
     characterZ = 150;
@@ -107,7 +107,7 @@ class Fruit {
   }
 
   display() {
-    if (!this.collected) {
+    if (!this.collected && !this.lost) {
       noStroke();
       fill("red"); // PLACEHOLDER, replace with image
       ellipse(this.x, this.y, this.radius);
@@ -162,8 +162,8 @@ class Level {
     bg2 = background(bgImg2, height, width);
     button2 = createButton("play");
     button2.position(300, 550);
-    textSize(35);
-    fill(161, 21, 84);
+    textSize(30);
+    fill(182, 252, 3);
     text(`Fruits Collected: ${score}`, 10, 30);
     function river() {
  fill( 53, 195, 242)
@@ -191,6 +191,7 @@ function checkCollisions() {
     if (hit && !fruit.collected) {
       fruit.collected = true;
       score = score + 1;
+      numFruit++;
       //console.log(score);
     }
   }
@@ -206,7 +207,7 @@ function checkLost() {
     );
     if (lost && !fruit.lost && !fruit.collected) {
       fruit.lost = true;
-      count = count + 1;
+      score = score -1
       console.log(count);
     }
   }

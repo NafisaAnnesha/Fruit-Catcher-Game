@@ -22,7 +22,7 @@ let pressed = false;
 let bgImg1;
 let bgImg2;
 let bgImg3;
-
+let nextLevel = false;
 let characterX;
 let characterY;
 let characterZ;
@@ -121,7 +121,7 @@ class Fruit {
 function draw() {
   welcomeScreen.display1();
 
-  checkCollisions();
+  
   checkLost();
   button1.mousePressed(() => (pressed = true));
   if (pressed) {
@@ -144,8 +144,13 @@ function draw() {
     image(character, mouseX - 50, characterX, characterY, characterZ);
     // end of charater movem
   }
+  if(nextLevel){
+    level2.display3();
+    
+  }
   if(score===5){
-    level3.display3()
+    
+    nextLevel = true;
   }
 }
   //   // fruitCollector image.
@@ -171,35 +176,40 @@ class Level {
   }
 
   display2() {
+    checkScore();
     bg2 = background(bgImg2, height, width);
     button2 = createButton("play");
     button2.position(300, 550);
     textSize(30);
     fill(182, 252, 3);
     text(`Fruits Collected: ${score}`, 10, 30);
-    function river() {
- fill( 53, 195, 242)
-  rect(0, 500, width, 50);
-}
+ 
     
     river()
   }
   display3(){
+    
     score = 0;
+    
     bg3 = background(bgImg3)
     text(`Fruits Collected: ${score}`, 10, 30);
-      function river() {
- fill( 53, 195, 242)
-  rect(0, 500, width, 50);
-}
-  }
+        river();
+    checkScore;
+     for (let i = 0; i < fruits.length; i++) {
+      let fruit = fruits[i];
+      fruit.move();
+      fruit.display();}
+  
+    fill(200, 80, 80);
+    image(character, mouseX - 50, characterX, characterY, characterZ);}
+ 
 }
 
 let welcomeScreen = new Level(bg1);
 let level1 = new Level(bg2);
 let level2 = new Level(bg3)
 
-function checkCollisions() {
+function checkScore() {
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
     let hit = collideRectCircle(
@@ -234,4 +244,8 @@ function checkLost() {
       console.log(count);
     }
   }
+}
+   function river() {
+ fill( 53, 195, 242)
+  rect(0, 500, width, 50);
 }

@@ -11,10 +11,11 @@ let numFruit;
 
 let pics;
 let gameIsOver;
-let mySound;
+
 let lives;
 let score;
 
+let mySound;
 let character, characterX, characterY, characterZ;
 let isJumping, jumpHeight, jumpDirection;
 
@@ -28,10 +29,11 @@ let restart;
 let fallSpeed;
 // let fruitR;
 function preLoad(){
+
   mySound = loadSound("assets/mixkit-extra-bonus-in-a-video-game-2045.mp3")
 }
 function setup() {
-  
+  mySound.play()
   score = 0;
   lives = 5;
   

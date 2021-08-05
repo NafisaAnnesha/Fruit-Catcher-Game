@@ -1,7 +1,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- * play, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ * play, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let fruits;
@@ -23,17 +23,18 @@ let bg1, bg2, bg3, bg4;
 let button1, button2, button3, button4;
 let bgImg1, bgImg2, bgImg3, bgImg4;
 
+
 let pressed;
 let nextLevel;
 let restart;
 let fallSpeed;
 // let fruitR;
-function preLoad(){
 
-  mySound = loadSound("assets/mixkit-extra-bonus-in-a-video-game-2045.mp3")
-}
 function setup() {
-  mySound.play()
+  
+  
+   mySound = createAudio('https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2Fmixkit-extra-bonus-in-a-video-game-2045.mp3?v=1628145860740');
+  
   score = 0;
   lives = 5;
   
@@ -355,6 +356,7 @@ function checkScore() {
 
     // double points for jumping    : Nafisa/Mariam
     if (hit && !fruit.collected && !gameIsOver) {
+      mySound.play();
       fruit.collected = true;
       score = score + 1;
       if (isJumping) {

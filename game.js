@@ -201,11 +201,11 @@ function draw() {
   if (pressed) {
     level1.display2();
     button1.position(880, 880);
-    for (let i = 0; i < fruits.length; i++) {
-      let fruit = fruits[i];
-      fruit.move();
-      fruit.display();
-    }
+    // for (let i = 0; i < fruits.length; i++) {
+    //   let fruit = fruits[i];
+    //   fruit.move();
+    //   fruit.display();
+    // }
   }
      if (restart) {
       reStart();
@@ -255,16 +255,25 @@ class Level {
   }
 
   display2() {
-    checkScore();
+    
     bg2 = background(bgImg2, height, width);
-    button2 = createButton("play");
-    button2.position(300, 550);
+    
+    river();
+    checkLost();
+     for (let i = 0; i < fruits.length; i++) {
+      let fruit = fruits[i];
+      fruit.move();
+      fruit.display();
+    }
+     checkScore();
+    //button2 = createButton("play");
+   // button2.position(300, 550);
     textSize(30);
     fill(182, 252, 3);
     text(`Fruits Collected: ${score}`, 10, 30);
     text(`Lives: ${lives}`, 10, 60);
-
-    river();
+    image(character, mouseX - 50, characterX, characterY, characterZ);
+   
   }
   display3() {
     bg3 = background(bgImg3);
@@ -291,7 +300,7 @@ class Level {
   }
 
   gameOverDisplay() {
-    ///button4.position(300, 400);
+    button4.position(300, 400);
     bg4 = background(bgImg4);
     textSize(70);
     fill(235, 64, 52);

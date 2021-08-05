@@ -44,6 +44,7 @@ let button4;
 function setup() {
   score = 0;
   lives = 5;
+  nextLevel = false;
   pressed = false;
   restart = false;
   restart = false;
@@ -51,7 +52,11 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   numFruit = 3;
   badFruit = 2;
-
+  button1 = createButton("click me ");
+  //button1.position(300, 400);
+ 
+  button4 = createButton("restart");
+  
   rottenFruit = loadImage(
     "https://cdn.glitch.com/80434272-b62e-4f01-b6ac-df848161321c%2FrottenFruit.png?v=1628124919350"
   );
@@ -80,9 +85,6 @@ function setup() {
 
   pics = [watermelon, pear, orange, lemon, cherry, banana, apple];
 
-  button1 = createButton("click me ");
-  button1.position(300, 400);
-  button4 = createButton("restart");
 
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
@@ -205,6 +207,10 @@ function draw() {
       fruit.display();
     }
   }
+     if (restart) {
+      reStart();
+      button4.position(600,600);
+    }
 
   // character movement according to the mouse.
 
@@ -285,20 +291,20 @@ class Level {
   }
 
   gameOverDisplay() {
+    ///button4.position(300, 400);
     bg4 = background(bgImg4);
     textSize(70);
     fill(235, 64, 52);
     textAlign(CENTER);
     text("Game Over", 300, 350);
 
-    button4.position(300, 400);
-    if (restart) {
-      reStart();
-    }
+    
+ 
   }
 }
 function reStart() {
   setup();
+  button4.position(600, 600);
   welcomeScreen.display1();
 }
 

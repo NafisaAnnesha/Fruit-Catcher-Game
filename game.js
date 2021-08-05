@@ -141,7 +141,7 @@ class BadFruit {
     this.rottenFruit = rottenFruit;
     this.x = random(width);
     this.y = random(20, 180) * -1;
-    this.radius = fruitR;
+    this.radius = 50;
     this.width = 30;
     this.height = 15;
     this.fallSpeed = random(2, 3);
@@ -298,6 +298,25 @@ function checkScore() {
       //console.log(score);
     }
   }
+    
+    for (let i = 0; i < badFruit; i++) {
+    let rottFruit = badFruits[i];
+    let hit2 = collideRectCircle(
+      mouseX - 50,
+      characterX,
+      characterY,
+      characterZ,
+      rottFruit.x,
+      rottFruit.y,
+      rottFruit.radius
+    );
+    if (hit2 && !rottFruit.collected) {
+      rottFruit.collected = true;
+    score = score-1;
+
+      //console.log(score);
+    }
+  }
 }
 function checkLost() {
   for (let i = 0; i < numFruit; i++) {
@@ -315,6 +334,22 @@ function checkLost() {
       fruit.lost = true;
       score = score - 1;
       console.log(count);
+    }
+  }
+      for (let i = 0; i < badFruit; i++) {
+    let rottFruit = badFruits[i];
+    let lost = collideRectCircle(
+      0,
+      height - 100,
+      width,
+      100,
+      rottFruit.x,
+      rottFruit.y,
+      rottFruit.radius
+    );
+    if (lost && !badFruit.lost && !badFruit.collected) {
+      rottFruit.lost = true;
+      
     }
   }
 }

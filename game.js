@@ -7,6 +7,10 @@
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
 let pics;
+let btn1;
+let btn2;
+let btn3;
+
 let gameIsOver;
 let lives = 5;
 let scale = 7;
@@ -78,7 +82,7 @@ function setup() {
   pics = [watermelon, pear, orange, lemon, cherry, banana, apple];
 
   button1 = createButton("click me ");
-  button1.position(300, 400);
+  //button1.position(300, 400);
   button4 = createButton("restart")
  
 
@@ -201,7 +205,7 @@ function draw() {
     gameOver.gameOverDisplay();
   }else{
     level1.display2();
-    button1.position(880, 880);
+    //button1.position(880, 880);
     for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
       fruit.move();
@@ -252,13 +256,14 @@ function draw() {
 
 
 class Level {
-  constructor(bg) {
-    //this.button = button;
+  constructor(bg, btn, button) {
+    this.button = button;
     this.background = bg;
+    this.button = btn
   }
   display1() {
     bg1 = background(bgImg1, height, width);
-    button1.position(300, 400);
+   btn1 =  button1.position(300, 400);
     
   }
 
@@ -266,7 +271,7 @@ class Level {
     checkScore();
     bg2 = background(bgImg2, height, width);
     button2 = createButton("play");
-    button2.position(300, 550);
+    btn2 = button2.position(300, 550);
     textSize(30);
     fill(182, 252, 3);
     text(`Fruits Collected: ${score}`, 10, 30);
@@ -304,14 +309,13 @@ class Level {
     textAlign(CENTER);
     text("Game Over", 300, 350);
 
-   button4.position(300, 400);
+   btn3 = button4.position(300,400)
 
   
   }}
 function reStart(){
    welcomeScreen.display1();
-  button1.position(300, 400);
-    button4.position(600, 600);
+ 
   
   
 }
@@ -321,10 +325,10 @@ function reStart(){
   
 
 
-let welcomeScreen = new Level(bg1);
-let level1 = new Level(bg2);
+let welcomeScreen = new Level(bg1, btn1, button1);
+let level1 = new Level(bg2, btn2, button2);
 let level2 = new Level(bg3);
-let gameOver = new Level(bg4);
+let gameOver = new Level(bg4, btn3, button4);
 
 function checkScore() {
   for (let i = 0; i < numFruit; i++) {

@@ -7,7 +7,7 @@
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
 let pics;
-let gameOver;
+let gameIsOver;
 let lives = 5;
 let scale = 7;
 let fruits;
@@ -40,7 +40,7 @@ let rottenFruit;
 let fruitR;
 function setup() {
   
-  gameOver = false;
+  gameIsOver = false;
   createCanvas(windowWidth, windowHeight);
   numFruit = 3;
   badFruit = 2;
@@ -182,8 +182,12 @@ function draw() {
   welcomeScreen.display1();
    reStart();
   checkLost();
+  
+ 
   button1.mousePressed(() => (pressed = true));
+  
   if (pressed) {
+    
     level1.display2();
     button1.position(880, 880);
     for (let i = 0; i < fruits.length; i++) {
@@ -232,10 +236,9 @@ function draw() {
 
 function reStart() {
   if (lives <= 0 || score < 0) {
-    gameOver = true;}
-    if(gameOver){
-    
-    }
+    gameIsOver = true;}
+  
+  
   
 }
 

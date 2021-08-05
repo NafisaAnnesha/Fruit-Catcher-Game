@@ -41,7 +41,7 @@ let badFruits;
 let rottenFruit;
 let fruitR;
 let button4;
-let changeLevelSound;
+
 function setup() {
   score = 0;
   lives = 5;
@@ -85,10 +85,7 @@ function setup() {
   );
 
   pics = [watermelon, pear, orange, lemon, cherry, banana, apple];
-function preload() {
-  soundFormats('mp3', 'ogg');
-  changeLevelSound = loadSound('https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2Fmixkit-extra-bonus-in-a-video-game-2045.mp3?v=1628145860740.mp3');
-}
+
    
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
@@ -227,7 +224,7 @@ function draw() {
   }
   if (nextLevel) {
     score;
-    changeLevelSound.play()
+    
     this.fallSpeed = random(2, 3);
     level2.display3();
   }
@@ -346,7 +343,7 @@ function checkScore() {
       fruit.radius
     );
 
-    if (hit && !fruit.collected) {
+    if (hit && !fruit.collected && !gameIsOver) {
       fruit.collected = true;
       score = score + 1;
       if (isJumping) {
@@ -367,7 +364,7 @@ function checkScore() {
       rottFruit.y,
       rottFruit.radius
     );
-    if (hit2 && !rottFruit.collected) {
+    if (hit2 && !rottFruit.collected && !gameIsOver) {
       rottFruit.collected = true;
       score = score - 1;
 
@@ -393,7 +390,7 @@ function checkLost() {
       fruit.y,
       fruit.radius
     );
-    if (lost && !fruit.lost && !fruit.collected) {
+    if (lost && !fruit.lost && !fruit.collected && !gameIsOver) {
       fruit.lost = true;
       lives = lives - 1;
     }

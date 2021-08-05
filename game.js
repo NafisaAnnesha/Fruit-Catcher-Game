@@ -1,7 +1,7 @@
 // Name any p5.js functions we use in `global` so Glitch can recognize them.
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
- *    UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
+ *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
  *  rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
@@ -21,10 +21,12 @@ let bg2;
 let button2;
 let bg3;
 let button3;
+let bg4;
 let pressed = false;
 let bgImg1;
 let bgImg2;
 let bgImg3;
+let bgImg4;
 let nextLevel = false;
 let characterX;
 let characterY;
@@ -86,6 +88,8 @@ function setup() {
   bgImg3 = loadImage(
     "https://cdn.glitch.com/c2cb5413-90bd-4f0b-8fba-70efb1ea9018%2Fbg3.png?v=1628043067860"
   );
+  bgImg4 = loadImage(
+  'https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2FgameOver.gif?v=1628134674213')
   // here we use a callback to display the image after loading.
   // character image.
   character = loadImage(
@@ -187,14 +191,16 @@ function draw() {
   button1.mousePressed(() => (pressed = true));
   
   if (pressed) {
-    
+     if(gameIsOver === true ){
+    gameOver.gameOverDisplay();
+  }else{
     level1.display2();
     button1.position(880, 880);
     for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
       fruit.move();
       fruit.display();
-    }
+    }}
     // if (score === 5){
     //   level2.display3();
     //    for (let i = 0; i < fruits.length; i++) {
@@ -288,11 +294,21 @@ class Level {
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
   }
+  
+  gameOverDisplay(){
+  bg4 = background(bgImg4)
+      textSize(70);
+    fill(235, 64, 52);
+    textAlign(CENTER);
+    text("Game Over", 300, 350);
+    createButton 
+  }
 }
 
 let welcomeScreen = new Level(bg1);
 let level1 = new Level(bg2);
 let level2 = new Level(bg3);
+let gameOver = new Level(bg4);
 
 function checkScore() {
   for (let i = 0; i < numFruit; i++) {

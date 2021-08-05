@@ -22,7 +22,6 @@ let button2;
 let bg3;
 let button3;
 let bg4;
-let button4;
 let pressed = false;
 let bgImg1;
 let bgImg2;
@@ -41,6 +40,7 @@ let badFruit;
 let badFruits;
 let rottenFruit;
 let fruitR;
+let button4;
 function setup() {
   
   gameIsOver = false;
@@ -79,6 +79,8 @@ function setup() {
 
   button1 = createButton("click me ");
   button1.position(300, 400);
+  button4 = createButton("restart")
+ 
 
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
@@ -190,7 +192,7 @@ function draw() {
   
  
   button1.mousePressed(() => (pressed = true));
-  
+    button4.mousePressed(() => (restart = true));
   if (pressed) {
      if(gameIsOver === true ){
     gameOver.gameOverDisplay();
@@ -264,7 +266,7 @@ class Level {
   display2() {
     checkScore();
     bg2 = background(bgImg2, height, width);
-    //button2 = createButton("play");
+    button2 = createButton("play");
     button2.position(300, 550);
     textSize(30);
     fill(182, 252, 3);
@@ -302,15 +304,15 @@ class Level {
     fill(235, 64, 52);
     textAlign(CENTER);
     text("Game Over", 300, 350);
-   button4 = createButton(" ReStart")
+
+   button4.position(300, 400);
   
-   button1.mousePressed(() => (restart = true));
-   button4.position(height-100, width*1/2)
-    if (restart) {
+
+//     if (restart) {
    
-   welcomeScreen.display1();
+//    welcomeScreen.display1();
   
-    }
+//     }
   
   
   

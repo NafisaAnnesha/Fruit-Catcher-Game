@@ -7,6 +7,8 @@
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
 let pics;
+let gameOver = false;
+let lives = 5;
 let scale = 7;
 let fruits;
 let numFruit;
@@ -27,7 +29,7 @@ let nextLevel = false;
 let characterX;
 let characterY;
 let characterZ;
-let count = 0;
+
 let fallSpeed;
 let isJumping; 
 let jumpHeight; 
@@ -114,7 +116,7 @@ class Fruit {
     this.radius = random(50, 60);
     this.width = 40;
     this.height = 5;
-    this.fallSpeed = random(1.5, 2);
+    this.fallSpeed = random( 2, 2.5);
     this.collected = false;
     this.lost = false;
   }
@@ -123,7 +125,7 @@ class Fruit {
     this.y += this.fallSpeed;
 
     if (this.y > height) {
-      this.y = random(0, -40);
+      this.y = random(50, 200)*-1;
       this.x = random(width);
       this.collected = false;
       this.lost = false;
@@ -149,7 +151,7 @@ class BadFruit {
     this.lost = false;
   }
   obstMovement() {
-     this.fallSpeed++;
+    this.y += this.fallSpeed;
 
     if (this.y > height) {
       this.y = random(20, 180) * -1;
@@ -220,6 +222,14 @@ function draw() {
 }
 
 
+
+function resStart(){
+  if(score <= 0 || lives <= 0){
+    gameOver = true;
+  }
+}
+
+
 //   // fruitCollector image.
 //   image(img, 320, 390, 100, 100);
 
@@ -249,13 +259,14 @@ class Level {
     textSize(30);
     fill(182, 252, 3);
     text(`Fruits Collected: ${score}`, 10, 30);
+        text(`Lives: ${lives}`, 10, 50);
 
     river();
   }
   display3() {
     bg3 = background(bgImg3);
    
-    fallSpeed = random(2, 2.5);
+    //fallSpeed = random(2, 2.5);
 
     river();
         for (let i = 0; i < badFruits.length; i++) {
@@ -270,6 +281,7 @@ class Level {
     }
     checkScore();
     text(`Fruits Collected: ${score}`, 10, 30);
+    text(`Lives: ${lives}`, 10, 50);
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
   }
@@ -332,8 +344,8 @@ function checkLost() {
     );
     if (lost && !fruit.lost && !fruit.collected) {
       fruit.lost = true;
-      score = score - 1;
-      console.log(count);
+      lives = lives - 1;
+     
     }
   }
       for (let i = 0; i < badFruit; i++) {

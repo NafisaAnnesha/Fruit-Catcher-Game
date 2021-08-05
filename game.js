@@ -8,11 +8,11 @@
 let watermelon, pear, orange, lemon, cherry, banana, apple;
 let pics;
 let gameIsOver;
-let lives = 5;
+let lives;
 let scale = 7;
 let fruits;
 let numFruit;
-let score = 0;
+let score;
 let basket;
 let character;
 let bg1;
@@ -42,6 +42,8 @@ let rottenFruit;
 let fruitR;
 let button4;
 function setup() {
+  score = 0;
+  lives = 5;
   pressed = false;
   restart = false
   restart = false;
@@ -83,7 +85,9 @@ function setup() {
   button1.position(300, 400);
   button4 = createButton("restart")
  
-
+  
+ if (lives <= 0 || score < 0) {
+    gameIsOver = true;}
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
   );
@@ -191,9 +195,7 @@ function draw() {
   welcomeScreen.display1();
    
   checkLost();
-  
- if (lives <= 0 || score < 0) {
-    gameIsOver = true;}
+
   
   button1.mousePressed(() => (pressed = true));
     button4.mousePressed(() => (restart = true));
@@ -277,6 +279,7 @@ class Level {
     //fallSpeed = random(2, 2.5);
 
     river();
+    checkLost();
     for (let i = 0; i < badFruits.length; i++) {
       let badFruit = badFruits[i];
       badFruit.obstMovement();
@@ -310,9 +313,9 @@ class Level {
   
   }}
 function reStart(){
- 
+ setup();
    welcomeScreen.display1();
-  setup();
+
  
  }
  

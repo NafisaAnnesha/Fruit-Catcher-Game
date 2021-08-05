@@ -2,7 +2,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- * play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ * textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
@@ -210,7 +210,7 @@ function draw() {
   }
      if (restart) {
       reStart();
-      button4.position(600,600);
+      button4.position(8000,800);
     }
 
   // character movement according to the mouse.
@@ -301,21 +301,21 @@ class Level {
   }
 
   gameOverDisplay() {
-    button4.position(300, 400);
+    button4.position(600, 400);
     bg4 = background(bgImg4);
    
-    textSize(70);
+  
     fill(235, 64, 52);
-    
+      textSize(70);
     textAlign(CENTER);
-    text("Game Over", 300, 350);
+    text("Game Over", width*1/2, 350);
     
     
  
   }
 }
 function reStart() {
-   button4.position(600, 600);
+   button4.position(8000, 8000);
   setup();
  
   welcomeScreen.display1();

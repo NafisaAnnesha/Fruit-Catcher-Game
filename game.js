@@ -1,7 +1,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- * play, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ * play, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let fruits;
@@ -28,9 +28,10 @@ let restart;
 let fallSpeed;
 // let fruitR;
 function preLoad(){
-  mySound = loadSound("mixkit-extra-bonus-in-a-video-game-2045.mp3")
+  mySound = loadSound("assets/mixkit-extra-bonus-in-a-video-game-2045.mp3")
 }
 function setup() {
+  
   score = 0;
   lives = 5;
   
@@ -200,7 +201,7 @@ function draw() {
   if (pressed) {
     level1.display2();
     button1.position(880, 880);
-    mySound.play()
+   
     // for (let i = 0; i < fruits.length; i++) {
     //   let fruit = fruits[i];
     //   fruit.move();

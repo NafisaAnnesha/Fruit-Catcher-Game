@@ -6,6 +6,7 @@
  */
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
+let pics;
 let scale = 7;
 let fruits;
 let numFruit;
@@ -37,8 +38,11 @@ let isJumping;
 let jumpHeight; 
 let jumpDirection;
 
-// Images. 
-function preLoad() {
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  numFruit = 3;
+  
+  // Fruit Images
   watermelon = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FWatermelon.png?v=1627948820847"
   );
@@ -60,19 +64,12 @@ function preLoad() {
   apple = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FApple.png?v=1627948772526"
   );
-}
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  numFruit = 3;
-  fruit1 = loadImage('https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FOrange.png?v=1627948802920')
-  fruit2 = loadImage('https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FLemon.png?v=1627948795527')
+  pics = [watermelon, pear, orange, lemon, cherry, banana, apple];
+  
   button1 = createButton("click me ");
-  fruitX = random(width);
-  fruitY = random(height);
-  fruitR = random(50,60);
-  fallSpeed = random(1.5, 2);
   button1.position(300, 400);
+  
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
   );
@@ -86,9 +83,6 @@ function setup() {
   // character image.
   character = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fa781dc306629a13c363acbbaaafbc2b2.png?v=1627957317192"
-    
-    // Fruit images
-    
   ); // end of character image.
 
   fruits = [];
@@ -97,12 +91,12 @@ function setup() {
     let newFruit = new Fruit();
    
     fruits.push(newFruit);
- 
-
-    characterX = height - 250;
-    characterY = 100;
-    characterZ = 100;
   }
+
+  characterX = height - 250;
+  characterY = 100;
+  characterZ = 100;
+  
   isJumping = false; 
   jumpHeight = 50; 
   jumpDirection = "UP"; 
@@ -110,16 +104,15 @@ function setup() {
 
 class Fruit {
   constructor() {
-    this.image = fruit1;
-    this.x = fruitX;
-    this.y = fruitY;
-    this.radius = fruitR;
+    this.image = random(pics);
+    this.x = random(width);
+    this.y = random(height);
+    this.radius = random(50, 60);
     this.width = 40;
     this.height = 5;
-    this.fallSpeed = fallSpeed;
+    this.fallSpeed = random(1.5, 2);
     this.collected = false;
     this.lost = false;
-    
   }
 
   move() {
@@ -135,9 +128,7 @@ class Fruit {
 
   display() {
     if (!this.collected && !this.lost) {
-      noStroke();
-      fill("red"); // PLACEHOLDER, replace with image
-      image(this.image, this.x, this.y, this.radius, this.width, this.height);
+      image(this.image, this.x, this.y, this.radius, 40, 5);
     }
   }
 } // end of Fruit
@@ -162,10 +153,11 @@ function draw() {
     //       fruit.move();
     //       fruit.display();
     // }
+    
     // character movement according to the mouse.
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
-    // end of charater movem
+    // end of charater movement
   }
   if (score === 5) {
     nextLevel = true;
@@ -175,9 +167,10 @@ function draw() {
     fallSpeed = random(1.5, 2);
     level2.display3();
   }
-}
-
-if (isJumping) {
+  
+  
+  
+  if (isJumping) {
     if (characterX > height - 250 - jumpHeight && jumpDirection == "UP") {
       characterX -= 5;
     } else if (characterX <= height - 250 - jumpHeight) {
@@ -191,6 +184,9 @@ if (isJumping) {
       characterX = height - 250;
     }
   }
+}
+
+
 //   // fruitCollector image.
 //   image(img, 320, 390, 100, 100);
 
@@ -256,9 +252,24 @@ function checkScore() {
       fruit.y,
       fruit.radius
     );
+    let powerHit = collideRectCircle(
+      mouseX - 50,
+      characterX,
+      characterY,
+      characterZ,
+      fruit.x,
+      fruit.y-20,
+      fruit.radius
+    );
     if (hit && !fruit.collected) {
       fruit.collected = true;
       score = score + 1;
+
+      //console.log(score);
+    }
+    if (powerHit && !fruit.collected) {
+      fruit.collected = true;
+      score = score + 2;
 
       //console.log(score);
     }

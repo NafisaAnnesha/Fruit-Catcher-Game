@@ -11,7 +11,7 @@ let numFruit;
 
 let pics;
 let gameIsOver;
-
+let mySound;
 let lives;
 let score;
 
@@ -27,7 +27,9 @@ let nextLevel;
 let restart;
 let fallSpeed;
 // let fruitR;
-
+function preLoad(){
+  mySound = loadSound("https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2Fmixkit-extra-bonus-in-a-video-game-2045.mp3?v=1628145860740")
+}
 function setup() {
   score = 0;
   lives = 5;
@@ -198,6 +200,7 @@ function draw() {
   if (pressed) {
     level1.display2();
     button1.position(880, 880);
+    mySound.play()
     // for (let i = 0; i < fruits.length; i++) {
     //   let fruit = fruits[i];
     //   fruit.move();

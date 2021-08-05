@@ -4,60 +4,50 @@
  * textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
+let fruits;
 let watermelon, pear, orange, lemon, cherry, banana, apple;
+let rottenFruit, badFruit, badFruits;
+let numFruit;
+
 let pics;
 let gameIsOver;
+
 let lives;
-let scale = 7;
-let fruits;
-let numFruit;
 let score;
-let basket;
-let character;
-let bg1;
-let button1;
-let bg2;
-let button2;
-let bg3;
-let button3;
-let bg4;
+
+let character, characterX, characterY, characterZ;
+let isJumping, jumpHeight, jumpDirection;
+
+let bg1, bg2, bg3, bg4;
+let button1, button2, button3, button4;
+let bgImg1, bgImg2, bgImg3, bgImg4;
+
 let pressed;
-let bgImg1;
-let bgImg2;
-let bgImg3;
-let bgImg4;
 let nextLevel;
-let characterX;
-let characterY;
-let characterZ;
 let restart;
 let fallSpeed;
-let isJumping;
-let jumpHeight;
-let jumpDirection;
-let badFruit;
-let badFruits;
-let rottenFruit;
-let fruitR;
-let button4;
+// let fruitR;
 
 function setup() {
   score = 0;
   lives = 5;
+  
   nextLevel = false;
   pressed = false;
   restart = false;
   restart = false;
   gameIsOver = false;
+  
   createCanvas(windowWidth, windowHeight);
+  
   numFruit = 3;
   badFruit = 2;
   button1 = createButton("click me ");
   //button1.position(300, 400);
- 
+
   button4 = createButton("restart");
-  
-  // FRUIT IMAGES
+
+  // FRUIT IMAGES   :Rodjina
   rottenFruit = loadImage(
     "https://cdn.glitch.com/80434272-b62e-4f01-b6ac-df848161321c%2FrottenFruit.png?v=1628124919350"
   );
@@ -99,7 +89,7 @@ function setup() {
     "https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2FgameOver.gif?v=1628134674213"
   );
 
-  // CHARACTER/FRUIT COLLECTOR IMAGE
+  // CHARACTER/FRUIT COLLECTOR IMAGE (Mariam).
   character = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fa781dc306629a13c363acbbaaafbc2b2.png?v=1627957317192"
   ); // end of character image.
@@ -116,6 +106,7 @@ function setup() {
     fruits.push(newFruit);
   }
 
+  // Jumping (Mariam). 
   characterX = height - 250;
   characterY = 100;
   characterZ = 100;
@@ -123,8 +114,10 @@ function setup() {
   isJumping = false;
   jumpHeight = 50;
   jumpDirection = "UP";
+  
+  // end jumpig. 
 } // end setup
-
+//fruit    : Rodjina
 class Fruit {
   constructor() {
     this.image = random(pics);
@@ -154,8 +147,8 @@ class Fruit {
       image(this.image, this.x, this.y, this.radius, 40, 5);
     }
   }
-} // end Fruit
-// obstacles
+} // end Fruit    : Rodjina
+// obstacles      : Nafisa/ Rodjina
 class BadFruit {
   constructor() {
     this.rottenFruit = rottenFruit;
@@ -168,7 +161,7 @@ class BadFruit {
     this.collected = false;
     this.lost = false;
   }
-  
+
   obstMovement() {
     this.y += this.fallSpeed;
 
@@ -179,7 +172,7 @@ class BadFruit {
       this.lost = false;
     }
   }
-  
+
   showRottenFruit() {
     if (!this.collected && !this.lost) {
       image(
@@ -211,30 +204,30 @@ function draw() {
     //   fruit.display();
     // }
   }
-     if (restart) {
-      reStart();
-      button4.position(8000,800);
-    }
+  if (restart) {
+    reStart();
+    button4.position(8000, 800);
+  }
 
-  // Character Movement According to Mouse.
-
-  // end of charater movement
-
+  
+  
+// Character movement (Mariam)
   fill(200, 80, 80);
   image(character, mouseX - 50, characterX, characterY, characterZ);
-  //proceed to next level
+  // end of character movement. 
+  //proceed to next level  :Nafisa
   if (score >= 5) {
     nextLevel = true;
   }
-  
+
   if (nextLevel) {
     score;
-    
+
     this.fallSpeed = random(2, 3);
     level2.display3();
   }
 
-  // Jumping Powerup
+  // Jumping Powerup   : Mariam
   if (isJumping) {
     if (characterX > height - 250 - jumpHeight && jumpDirection == "UP") {
       characterX -= 5;
@@ -247,10 +240,11 @@ function draw() {
       isJumping = false;
       jumpDirection = "UP";
       characterX = height - 250;
+      // end of jumping powerup.
     }
   }
 } // end draw
-
+// levels display : Nafisa
 class Level {
   constructor(bg) {
     //this.button = button;
@@ -261,31 +255,30 @@ class Level {
     bg1 = background(bgImg1, height, width);
     button1.position(80, 540);
   }
-  
-//level1
+
+  //level1
   display2() {
     bg2 = background(bgImg2, height, width);
-    
+
     river();
     checkLost();
-    
-     for (let i = 0; i < fruits.length; i++) {
+
+    for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
       fruit.move();
       fruit.display();
     }
-    
-     checkScore();
+
+    checkScore();
     //button2 = createButton("play");
-   // button2.position(300, 550);
+    // button2.position(300, 550);
     textSize(30);
     fill(182, 252, 3);
     text(`Fruits Collected: ${score}`, 10, 30);
     text(`Lives: ${lives}`, 10, 60);
     image(character, mouseX - 50, characterX, characterY, characterZ);
-   
   }
-  
+
   //level2
   display3() {
     bg3 = background(bgImg3);
@@ -306,29 +299,28 @@ class Level {
     }
     checkScore();
     text(`Fruits Collected: ${score}`, 10, 30);
-     text(`Lives: ${lives}`, 10, 60);
+    text(`Lives: ${lives}`, 10, 60);
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
   }
-  
-//game over
+
+  //game over   
   gameOverDisplay() {
     button4.position(600, 400);
     bg4 = background(bgImg4);
-   
-  
+
     fill(235, 64, 52);
-      textSize(70);
+    textSize(70);
     textAlign(CENTER);
-    text("Game Over", width*1/2, 350);
+    text("Game Over", (width * 1) / 2, 350);
   }
 }
 
-// reset game 
+// reset game   :Nafisa
 function reStart() {
-   button4.position(8000, 8000);
+  button4.position(8000, 8000);
   setup();
- 
+
   welcomeScreen.display1();
 }
 
@@ -341,7 +333,7 @@ let level1 = new Level(bg2);
 let level2 = new Level(bg3);
 let gameOver = new Level(bg4);
 
-// keep track of score and game over condition
+// keep track of score and game over condition   : Nafisa/ Mariam
 function checkScore() {
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
@@ -354,8 +346,8 @@ function checkScore() {
       fruit.y,
       fruit.radius
     );
-    
-// double points for jumping 
+
+    // double points for jumping    : Nafisa/Mariam
     if (hit && !fruit.collected && !gameIsOver) {
       fruit.collected = true;
       score = score + 1;
@@ -365,8 +357,8 @@ function checkScore() {
       //console.log(score);
     }
   }
-  
- // check obstacles collision
+
+  // check obstacles collision
   for (let i = 0; i < badFruit; i++) {
     let rottFruit = badFruits[i];
     let hit2 = collideRectCircle(
@@ -393,7 +385,7 @@ function checkScore() {
   }
 }
 
-//keep track of losing points by clicking on obstacles or losing fruits
+//keep track of losing points by clicking on obstacles or losing fruits  : Nafisa
 function checkLost() {
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
@@ -428,7 +420,7 @@ function checkLost() {
   }
 }
 
-// landmark for losing points
+// landmark for losing points  :Nafisa
 function river() {
   fill(53, 195, 242);
   rect(0, height - 100, width, 100);
@@ -439,7 +431,8 @@ function river() {
 
 // }
 
-// Use UP arrow to jump. 
+// Use UP arrow to jump.  : Mariam
+
 function keyPressed() {
   //console.log(keyCode);
   if (keyCode == UP_ARROW) {

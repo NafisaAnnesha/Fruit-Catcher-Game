@@ -7,10 +7,6 @@
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
 let pics;
-let btn1;
-let btn2;
-let btn3;
-
 let gameIsOver;
 let lives = 5;
 let scale = 7;
@@ -26,7 +22,7 @@ let button2;
 let bg3;
 let button3;
 let bg4;
-let pressed = false;
+let pressed;
 let bgImg1;
 let bgImg2;
 let bgImg3;
@@ -46,6 +42,8 @@ let rottenFruit;
 let fruitR;
 let button4;
 function setup() {
+  pressed = false;
+  restart = false
   restart = false;
   gameIsOver = false;
   createCanvas(windowWidth, windowHeight);
@@ -82,7 +80,7 @@ function setup() {
   pics = [watermelon, pear, orange, lemon, cherry, banana, apple];
 
   button1 = createButton("click me ");
-  //button1.position(300, 400);
+  button1.position(300, 400);
   button4 = createButton("restart")
  
 
@@ -205,7 +203,7 @@ function draw() {
     gameOver.gameOverDisplay();
   }else{
     level1.display2();
-    //button1.position(880, 880);
+    button1.position(880, 880);
     for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
       fruit.move();
@@ -216,11 +214,6 @@ function draw() {
     // character movement according to the mouse.
    
     // end of charater movement
-  }
-        if (restart) {
-         
-   restart();
-        
   }
    fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
@@ -256,14 +249,13 @@ function draw() {
 
 
 class Level {
-  constructor(bg, btn, button) {
-    this.button = button;
+  constructor(bg) {
+    //this.button = button;
     this.background = bg;
-    this.button = btn
   }
   display1() {
     bg1 = background(bgImg1, height, width);
-   btn1 =  button1.position(300, 400);
+    button1.position(300, 400);
     
   }
 
@@ -271,7 +263,7 @@ class Level {
     checkScore();
     bg2 = background(bgImg2, height, width);
     button2 = createButton("play");
-    btn2 = button2.position(300, 550);
+    button2.position(300, 550);
     textSize(30);
     fill(182, 252, 3);
     text(`Fruits Collected: ${score}`, 10, 30);
@@ -309,26 +301,37 @@ class Level {
     textAlign(CENTER);
     text("Game Over", 300, 350);
 
-   btn3 = button4.position(300,400)
-
+   button4.position(300, 400);
+      if (restart) {
+         
+   reStart();
+        
+  }
   
   }}
 function reStart(){
-   welcomeScreen.display1();
  
+   welcomeScreen.display1();
+  setup();
+ 
+ }
+ 
+
+    // character movement according to the mouse.
+   
+    // end of charater movement
   
-  
-}
+
   
   
   
   
 
 
-let welcomeScreen = new Level(bg1, btn1, button1);
-let level1 = new Level(bg2, btn2, button2);
+let welcomeScreen = new Level(bg1);
+let level1 = new Level(bg2);
 let level2 = new Level(bg3);
-let gameOver = new Level(bg4, btn3, button4);
+let gameOver = new Level(bg4);
 
 function checkScore() {
   for (let i = 0; i < numFruit; i++) {

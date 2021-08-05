@@ -2,7 +2,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- *  noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ *  p5.play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
@@ -41,6 +41,7 @@ let badFruits;
 let rottenFruit;
 let fruitR;
 let button4;
+let changeLevelSound;
 function setup() {
   score = 0;
   lives = 5;
@@ -84,8 +85,11 @@ function setup() {
   );
 
   pics = [watermelon, pear, orange, lemon, cherry, banana, apple];
-
-
+function preload() {
+  soundFormats('mp3', 'ogg');
+  changeLevelSound = loadSound('https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2Fmixkit-game-level-completed-2059.wav?v=1628143120717');
+}
+   
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
   );
@@ -223,7 +227,7 @@ function draw() {
   }
   if (nextLevel) {
     score;
-
+    changeLevelSound.play()
     this.fallSpeed = random(2, 3);
     level2.display3();
   }

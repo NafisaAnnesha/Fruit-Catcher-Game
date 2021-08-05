@@ -7,7 +7,7 @@
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
 let pics;
-let gameOver = false;
+let gameOver;
 let lives = 5;
 let scale = 7;
 let fruits;
@@ -31,18 +31,24 @@ let characterY;
 let characterZ;
 
 let fallSpeed;
-let isJumping; 
-let jumpHeight; 
+let isJumping;
+let jumpHeight;
 let jumpDirection;
 let badFruit;
 let badFruits;
 let rottenFruit;
 let fruitR;
 function setup() {
+  
+  gameOver = false;
   createCanvas(windowWidth, windowHeight);
   numFruit = 3;
-   badFruit = 2;
-  rottenFruit = loadImage('https://cdn.glitch.com/80434272-b62e-4f01-b6ac-df848161321c%2FrottenFruit.png?v=1628124919350')
+  badFruit = 2;
+  
+ 
+  rottenFruit = loadImage(
+    "https://cdn.glitch.com/80434272-b62e-4f01-b6ac-df848161321c%2FrottenFruit.png?v=1628124919350"
+  );
   // Fruit Images
   watermelon = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FWatermelon.png?v=1627948820847"
@@ -67,10 +73,10 @@ function setup() {
   );
 
   pics = [watermelon, pear, orange, lemon, cherry, banana, apple];
-  
+
   button1 = createButton("click me ");
   button1.position(300, 400);
-  
+
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
   );
@@ -87,25 +93,24 @@ function setup() {
   ); // end of character image.
 
   fruits = [];
- badFruits = [];
+  badFruits = [];
   for (let i = 0; i < badFruit; i++) {
     let newBadFruit = new BadFruit();
-  badFruits.push(newBadFruit);
-  
+    badFruits.push(newBadFruit);
   }
   for (let i = 0; i < numFruit; i++) {
     let newFruit = new Fruit();
-   
+
     fruits.push(newFruit);
   }
 
   characterX = height - 250;
   characterY = 100;
   characterZ = 100;
-  
-  isJumping = false; 
-  jumpHeight = 50; 
-  jumpDirection = "UP"; 
+
+  isJumping = false;
+  jumpHeight = 50;
+  jumpDirection = "UP";
 }
 
 class Fruit {
@@ -116,7 +121,7 @@ class Fruit {
     this.radius = random(50, 60);
     this.width = 40;
     this.height = 5;
-    this.fallSpeed = random( 2, 2.5);
+    this.fallSpeed = random(2, 2.5);
     this.collected = false;
     this.lost = false;
   }
@@ -125,7 +130,7 @@ class Fruit {
     this.y += this.fallSpeed;
 
     if (this.y > height) {
-      this.y = random(50, 200)*-1;
+      this.y = random(50, 200) * -1;
       this.x = random(width);
       this.collected = false;
       this.lost = false;
@@ -162,14 +167,20 @@ class BadFruit {
   }
   showRottenFruit() {
     if (!this.collected && !this.lost) {
-      
-      image(this.rottenFruit, this.x, this.y, this.radius, this.width, this.height);
+      image(
+        this.rottenFruit,
+        this.x,
+        this.y,
+        this.radius,
+        this.width,
+        this.height
+      );
     }
   }
 }
 function draw() {
   welcomeScreen.display1();
-
+   reStart();
   checkLost();
   button1.mousePressed(() => (pressed = true));
   if (pressed) {
@@ -187,7 +198,7 @@ function draw() {
     //       fruit.move();
     //       fruit.display();
     // }
-    
+
     // character movement according to the mouse.
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
@@ -198,13 +209,11 @@ function draw() {
   }
   if (nextLevel) {
     score;
-    
-    this.fallSpeed = random(2,3);
+
+    this.fallSpeed = random(2, 3);
     level2.display3();
   }
-  
-  
-  
+
   if (isJumping) {
     if (characterX > height - 250 - jumpHeight && jumpDirection == "UP") {
       characterX -= 5;
@@ -221,26 +230,17 @@ function draw() {
   }
 }
 
-
-
-function resStart(){
-  if(score <= 0 || lives <= 0){
-    gameOver = true;
-  }
+function reStart() {
+  if (lives <= 0 || score < 0) {
+    gameOver = true;}
+    if(gameOver){
+    
+    }
+  
 }
 
 
-//   // fruitCollector image.
-//   image(img, 320, 390, 100, 100);
 
-//   // Images
-//   image(watermelon, 0, 0, 1150 / (scale + 4), 475 / (scale + 4));
-//   image(pear, 0, 0, 239 / scale, 359 / scale);
-//   image(orange, 0, 0, 239 / scale, 237 / scale);
-//   image(lemon, 250, 0, 212 / scale, 286 / scale);
-//   image(cherry, 150, 0, 686 / scale, 444 / scale);
-//   image(banana, 140, 0, 327 / scale, 420 / scale);
-//   image(apple, 70, 0, 239 / scale, 270 / scale);
 
 class Level {
   constructor(bg) {
@@ -259,20 +259,20 @@ class Level {
     textSize(30);
     fill(182, 252, 3);
     text(`Fruits Collected: ${score}`, 10, 30);
-        text(`Lives: ${lives}`, 10, 50);
+    text(`Lives: ${lives}`, 10, 60);
 
     river();
   }
   display3() {
     bg3 = background(bgImg3);
-   
+
     //fallSpeed = random(2, 2.5);
 
     river();
-        for (let i = 0; i < badFruits.length; i++) {
+    for (let i = 0; i < badFruits.length; i++) {
       let badFruit = badFruits[i];
       badFruit.obstMovement();
-      badFruit. showRottenFruit();
+      badFruit.showRottenFruit();
     }
     for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
@@ -281,7 +281,7 @@ class Level {
     }
     checkScore();
     text(`Fruits Collected: ${score}`, 10, 30);
-    text(`Lives: ${lives}`, 10, 50);
+    text(`Lives: ${lives}`, 10, 60);
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
   }
@@ -303,18 +303,18 @@ function checkScore() {
       fruit.y,
       fruit.radius
     );
-   
-     if (hit && !fruit.collected) {
+
+    if (hit && !fruit.collected) {
       fruit.collected = true;
       score = score + 1;
-   if(isJumping){
-     score = score+1;
-   }
+      if (isJumping) {
+        score = score + 1;
+      }
       //console.log(score);
     }
   }
-    
-    for (let i = 0; i < badFruit; i++) {
+
+  for (let i = 0; i < badFruit; i++) {
     let rottFruit = badFruits[i];
     let hit2 = collideRectCircle(
       mouseX - 50,
@@ -327,7 +327,7 @@ function checkScore() {
     );
     if (hit2 && !rottFruit.collected) {
       rottFruit.collected = true;
-    score = score-1;
+      score = score - 1;
 
       //console.log(score);
     }
@@ -337,7 +337,10 @@ function checkLost() {
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
     let lost = collideRectCircle(
-     0, height - 100, width, 100,
+      0,
+      height - 100,
+      width,
+      100,
       fruit.x,
       fruit.y,
       fruit.radius
@@ -345,10 +348,9 @@ function checkLost() {
     if (lost && !fruit.lost && !fruit.collected) {
       fruit.lost = true;
       lives = lives - 1;
-     
     }
   }
-      for (let i = 0; i < badFruit; i++) {
+  for (let i = 0; i < badFruit; i++) {
     let rottFruit = badFruits[i];
     let lost = collideRectCircle(
       0,
@@ -361,7 +363,6 @@ function checkLost() {
     );
     if (lost && !badFruit.lost && !badFruit.collected) {
       rottFruit.lost = true;
-      
     }
   }
 }
@@ -372,10 +373,10 @@ function river() {
 // function resetScore(){
 //   score =0;
 //   fallSpeed = random(1.5,2)
-     
+
 // }
 
-// Use up arrow to jump. 
+// Use up arrow to jump.
 function keyPressed() {
   console.log(keyCode);
   if (keyCode == UP_ARROW) {

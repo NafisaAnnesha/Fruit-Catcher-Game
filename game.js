@@ -187,10 +187,12 @@ class BadFruit {
 }
 function draw() {
   welcomeScreen.display1();
-   reStart();
+   
   checkLost();
   
- 
+ if (lives <= 0 || score < 0) {
+    gameIsOver = true;}
+  
   button1.mousePressed(() => (pressed = true));
     button4.mousePressed(() => (restart = true));
   
@@ -210,6 +212,11 @@ function draw() {
     // character movement according to the mouse.
    
     // end of charater movement
+  }
+        if (restart) {
+         
+   restart();
+        
   }
    fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
@@ -239,13 +246,7 @@ function draw() {
   }
 }
 
-function reStart() {
-  if (lives <= 0 || score < 0) {
-    gameIsOver = true;}
-  
-  
-  
-}
+
 
 
 
@@ -257,6 +258,7 @@ class Level {
   }
   display1() {
     bg1 = background(bgImg1, height, width);
+    button1.position(300, 400);
     
   }
 
@@ -303,26 +305,21 @@ class Level {
     text("Game Over", 300, 350);
 
    button4.position(300, 400);
-      if (restart) {
-   
-    welcomeScreen.display1();
-         button4.position(600, 600);
-         button1.position(300, 400);
-  }
-  
 
-//     if (restart) {
-   
-//    welcomeScreen.display1();
   
-//     }
+  }}
+function reStart(){
+   welcomeScreen.display1();
+  button1.position(300, 400);
+    button4.position(600, 600);
   
-  
-  
-  
-  }
   
 }
+  
+  
+  
+  
+
 
 let welcomeScreen = new Level(bg1);
 let level1 = new Level(bg2);

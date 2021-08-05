@@ -2,7 +2,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- *  rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ *  noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let watermelon, pear, orange, lemon, cherry, banana, apple;
@@ -251,7 +251,7 @@ class Level {
   }
   display1() {
     bg1 = background(bgImg1, height, width);
-    button1.position(300, 400);
+    button1.position(80, 540);
   }
 
   display2() {
@@ -294,7 +294,7 @@ class Level {
     }
     checkScore();
     text(`Fruits Collected: ${score}`, 10, 30);
-    text(`Lives: ${lives}`, 10, 60);
+     text(`Lives: ${lives}`, 10, 60);
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
   }
@@ -302,18 +302,21 @@ class Level {
   gameOverDisplay() {
     button4.position(300, 400);
     bg4 = background(bgImg4);
+   
     textSize(70);
     fill(235, 64, 52);
+    
     textAlign(CENTER);
     text("Game Over", 300, 350);
-
+    
     
  
   }
 }
 function reStart() {
+   button4.position(600, 600);
   setup();
-  button4.position(600, 600);
+ 
   welcomeScreen.display1();
 }
 

@@ -322,10 +322,7 @@ function checkLost() {
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
     let lost = collideRectCircle(
-      0,
-      500,
-      width,
-      50,
+     0, height - 100, width, 100,
       fruit.x,
       fruit.y,
       fruit.radius
@@ -355,7 +352,7 @@ function checkLost() {
 }
 function river() {
   fill(53, 195, 242);
-  rect(0, width, width, 50);
+  rect(0, height - 100, width, 100);
 }
 // function resetScore(){
 //   score =0;

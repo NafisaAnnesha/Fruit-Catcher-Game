@@ -22,6 +22,7 @@ let button2;
 let bg3;
 let button3;
 let bg4;
+let button4;
 let pressed = false;
 let bgImg1;
 let bgImg2;
@@ -31,7 +32,7 @@ let nextLevel = false;
 let characterX;
 let characterY;
 let characterZ;
-
+let restart = false;
 let fallSpeed;
 let isJumping;
 let jumpHeight;
@@ -263,7 +264,7 @@ class Level {
   display2() {
     checkScore();
     bg2 = background(bgImg2, height, width);
-    button2 = createButton("play");
+    //button2 = createButton("play");
     button2.position(300, 550);
     textSize(30);
     fill(182, 252, 3);
@@ -301,8 +302,21 @@ class Level {
     fill(235, 64, 52);
     textAlign(CENTER);
     text("Game Over", 300, 350);
-    createButton 
+   button4 = createButton(" ReStart")
+  
+   button1.mousePressed(() => (restart = true));
+   button4.position(height-100, width*1/2)
+    if (restart) {
+   
+   welcomeScreen.display1();
+  
+    }
+  
+  
+  
+  
   }
+  
 }
 
 let welcomeScreen = new Level(bg1);

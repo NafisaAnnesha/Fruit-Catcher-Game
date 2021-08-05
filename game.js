@@ -32,11 +32,15 @@ let fallSpeed;
 let isJumping; 
 let jumpHeight; 
 let jumpDirection;
-
+let badFruit;
+let badFruits;
+let rottenFruit;
+let fruitR;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   numFruit = 3;
-  
+   badFruit = 2;
+  rottenFruit = loadImage('https://cdn.glitch.com/80434272-b62e-4f01-b6ac-df848161321c%2FrottenFruit.png?v=1628124919350')
   // Fruit Images
   watermelon = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FWatermelon.png?v=1627948820847"
@@ -81,7 +85,12 @@ function setup() {
   ); // end of character image.
 
   fruits = [];
-
+ badFruits = [];
+  for (let i = 0; i < badFruit; i++) {
+    let newBadFruit = new BadFruit();
+  badFruits.push(newBadFruit);
+  
+  }
   for (let i = 0; i < numFruit; i++) {
     let newFruit = new Fruit();
    
@@ -127,7 +136,35 @@ class Fruit {
     }
   }
 } // end of Fruit
+class BadFruit {
+  constructor() {
+    this.rottenFruit = rottenFruit;
+    this.x = random(width);
+    this.y = random(20, 180) * -1;
+    this.radius = fruitR;
+    this.width = 30;
+    this.height = 15;
+    this.fallSpeed = random(2, 3);
+    this.collected = false;
+    this.lost = false;
+  }
+  obstMovement() {
+    this.y += this.fallSpeed;
 
+    if (this.y > height) {
+      this.y = random(20, 180) * -1;
+      this.x = random(width);
+      this.collected = false;
+      this.lost = false;
+    }
+  }
+  showRottenFruit() {
+    if (!this.collected && !this.lost) {
+      
+      image(this.rottenFruit, this.x, this.y, this.radius, this.width, this.height);
+    }
+  }
+}
 function draw() {
   welcomeScreen.display1();
 
@@ -218,7 +255,11 @@ class Level {
     bg3 = background(bgImg3);
 
     river();
-
+        for (let i = 0; i < badFruits.length; i++) {
+      let badFruit = badFruits[i];
+      badFruit.obstMovement();
+      badFruit. showRottenFruit();
+    }
     for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
       fruit.move();
@@ -247,25 +288,13 @@ function checkScore() {
       fruit.y,
       fruit.radius
     );
-    let powerHit = collideRectCircle(
-      mouseX - 50,
-      characterX,
-      characterY,
-      characterZ,
-      fruit.x,
-      fruit.y-20,
-      fruit.radius
-    );
-    if (hit && !fruit.collected) {
+   
+     if (hit && !fruit.collected) {
       fruit.collected = true;
       score = score + 1;
-
-      //console.log(score);
-    }
-    if (powerHit && !fruit.collected) {
-      fruit.collected = true;
-      score = score + 2;
-
+   if(isJumping){
+     score = score+1;
+   }
       //console.log(score);
     }
   }

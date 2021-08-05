@@ -27,7 +27,7 @@ let bgImg1;
 let bgImg2;
 let bgImg3;
 let bgImg4;
-let nextLevel = false;
+let nextLevel;
 let characterX;
 let characterY;
 let characterZ;
@@ -45,14 +45,13 @@ function setup() {
   score = 0;
   lives = 5;
   pressed = false;
-  restart = false
+  restart = false;
   restart = false;
   gameIsOver = false;
   createCanvas(windowWidth, windowHeight);
   numFruit = 3;
   badFruit = 2;
-  
- 
+
   rottenFruit = loadImage(
     "https://cdn.glitch.com/80434272-b62e-4f01-b6ac-df848161321c%2FrottenFruit.png?v=1628124919350"
   );
@@ -83,11 +82,8 @@ function setup() {
 
   button1 = createButton("click me ");
   button1.position(300, 400);
-  button4 = createButton("restart")
- 
-  
- if (lives <= 0 || score < 0) {
-    gameIsOver = true;}
+  button4 = createButton("restart");
+
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
   );
@@ -98,7 +94,8 @@ function setup() {
     "https://cdn.glitch.com/c2cb5413-90bd-4f0b-8fba-70efb1ea9018%2Fbg3.png?v=1628043067860"
   );
   bgImg4 = loadImage(
-  'https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2FgameOver.gif?v=1628134674213')
+    "https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2FgameOver.gif?v=1628134674213"
+  );
   // here we use a callback to display the image after loading.
   // character image.
   character = loadImage(
@@ -193,32 +190,28 @@ class BadFruit {
 }
 function draw() {
   welcomeScreen.display1();
-   
+
   checkLost();
 
-  
   button1.mousePressed(() => (pressed = true));
-    button4.mousePressed(() => (restart = true));
-  
+  button4.mousePressed(() => (restart = true));
+
   if (pressed) {
-     if(gameIsOver === true ){
-    gameOver.gameOverDisplay();
-  }else{
     level1.display2();
     button1.position(880, 880);
     for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
       fruit.move();
       fruit.display();
-    }}
- 
-
-    // character movement according to the mouse.
-   
-    // end of charater movement
+    }
   }
-   fill(200, 80, 80);
-    image(character, mouseX - 50, characterX, characterY, characterZ);
+
+  // character movement according to the mouse.
+
+  // end of charater movement
+
+  fill(200, 80, 80);
+  image(character, mouseX - 50, characterX, characterY, characterZ);
   if (score >= 5) {
     nextLevel = true;
   }
@@ -245,11 +238,6 @@ function draw() {
   }
 }
 
-
-
-
-
-
 class Level {
   constructor(bg) {
     //this.button = button;
@@ -258,7 +246,6 @@ class Level {
   display1() {
     bg1 = background(bgImg1, height, width);
     button1.position(300, 400);
-    
   }
 
   display2() {
@@ -296,40 +283,28 @@ class Level {
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
   }
-  
-  gameOverDisplay(){
-  bg4 = background(bgImg4)
-      textSize(70);
+
+  gameOverDisplay() {
+    bg4 = background(bgImg4);
+    textSize(70);
     fill(235, 64, 52);
     textAlign(CENTER);
     text("Game Over", 300, 350);
 
-   button4.position(300, 400);
-      if (restart) {
-         
-   reStart();
-        
+    button4.position(300, 400);
+    if (restart) {
+      reStart();
+    }
   }
-  
-  }}
-function reStart(){
- setup();
-   welcomeScreen.display1();
+}
+function reStart() {
+  setup();
+  welcomeScreen.display1();
+}
 
- 
- }
- 
+// character movement according to the mouse.
 
-    // character movement according to the mouse.
-   
-    // end of charater movement
-  
-
-  
-  
-  
-  
-
+// end of charater movement
 
 let welcomeScreen = new Level(bg1);
 let level1 = new Level(bg2);
@@ -377,6 +352,12 @@ function checkScore() {
       //console.log(score);
     }
   }
+  if (lives <= 0 || score < 0) {
+    gameIsOver = true;
+  }
+  if (gameIsOver) {
+    gameOver.gameOverDisplay();
+  }
 }
 function checkLost() {
   for (let i = 0; i < numFruit; i++) {
@@ -423,7 +404,7 @@ function river() {
 
 // Use up arrow to jump.
 function keyPressed() {
-  console.log(keyCode);
+  //console.log(keyCode);
   if (keyCode == UP_ARROW) {
     isJumping = true;
   }

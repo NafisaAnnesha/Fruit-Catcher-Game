@@ -1,4 +1,3 @@
-// Name any p5.js functions we use in `global` so Glitch can recognize them.
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
@@ -58,10 +57,10 @@ function setup() {
  
   button4 = createButton("restart");
   
+  // FRUIT IMAGES
   rottenFruit = loadImage(
     "https://cdn.glitch.com/80434272-b62e-4f01-b6ac-df848161321c%2FrottenFruit.png?v=1628124919350"
   );
-  // Fruit Images
   watermelon = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2FWatermelon.png?v=1627948820847"
   );
@@ -86,7 +85,7 @@ function setup() {
 
   pics = [watermelon, pear, orange, lemon, cherry, banana, apple];
 
-   
+  // BACKGROUND IMAGES
   bgImg1 = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fbg.png?v=1627956421954"
   );
@@ -99,8 +98,8 @@ function setup() {
   bgImg4 = loadImage(
     "https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2FgameOver.gif?v=1628134674213"
   );
-  // here we use a callback to display the image after loading.
-  // character image.
+
+  // CHARACTER/FRUIT COLLECTOR IMAGE
   character = loadImage(
     "https://cdn.glitch.com/d8cd1a49-283f-47bb-acc5-1f438d6c1b79%2Fa781dc306629a13c363acbbaaafbc2b2.png?v=1627957317192"
   ); // end of character image.
@@ -124,7 +123,7 @@ function setup() {
   isJumping = false;
   jumpHeight = 50;
   jumpDirection = "UP";
-}
+} // end setup
 
 class Fruit {
   constructor() {
@@ -155,7 +154,8 @@ class Fruit {
       image(this.image, this.x, this.y, this.radius, 40, 5);
     }
   }
-} // end of Fruit
+} // end Fruit
+// obstacles
 class BadFruit {
   constructor() {
     this.rottenFruit = rottenFruit;
@@ -168,6 +168,7 @@ class BadFruit {
     this.collected = false;
     this.lost = false;
   }
+  
   obstMovement() {
     this.y += this.fallSpeed;
 
@@ -178,6 +179,7 @@ class BadFruit {
       this.lost = false;
     }
   }
+  
   showRottenFruit() {
     if (!this.collected && !this.lost) {
       image(
@@ -190,7 +192,8 @@ class BadFruit {
       );
     }
   }
-}
+} // end BadFruit/ obstacles
+
 function draw() {
   welcomeScreen.display1();
 
@@ -213,15 +216,17 @@ function draw() {
       button4.position(8000,800);
     }
 
-  // character movement according to the mouse.
+  // Character Movement According to Mouse.
 
   // end of charater movement
 
   fill(200, 80, 80);
   image(character, mouseX - 50, characterX, characterY, characterZ);
+  //proceed to next level
   if (score >= 5) {
     nextLevel = true;
   }
+  
   if (nextLevel) {
     score;
     
@@ -229,6 +234,7 @@ function draw() {
     level2.display3();
   }
 
+  // Jumping Powerup
   if (isJumping) {
     if (characterX > height - 250 - jumpHeight && jumpDirection == "UP") {
       characterX -= 5;
@@ -243,29 +249,32 @@ function draw() {
       characterX = height - 250;
     }
   }
-}
+} // end draw
 
 class Level {
   constructor(bg) {
     //this.button = button;
     this.background = bg;
   }
+  //welcome screen
   display1() {
     bg1 = background(bgImg1, height, width);
     button1.position(80, 540);
   }
-
+  
+//level1
   display2() {
-    
     bg2 = background(bgImg2, height, width);
     
     river();
     checkLost();
+    
      for (let i = 0; i < fruits.length; i++) {
       let fruit = fruits[i];
       fruit.move();
       fruit.display();
     }
+    
      checkScore();
     //button2 = createButton("play");
    // button2.position(300, 550);
@@ -276,6 +285,8 @@ class Level {
     image(character, mouseX - 50, characterX, characterY, characterZ);
    
   }
+  
+  //level2
   display3() {
     bg3 = background(bgImg3);
 
@@ -299,7 +310,8 @@ class Level {
     fill(200, 80, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
   }
-
+  
+//game over
   gameOverDisplay() {
     button4.position(600, 400);
     bg4 = background(bgImg4);
@@ -309,11 +321,10 @@ class Level {
       textSize(70);
     textAlign(CENTER);
     text("Game Over", width*1/2, 350);
-    
-    
- 
   }
 }
+
+// reset game 
 function reStart() {
    button4.position(8000, 8000);
   setup();
@@ -330,6 +341,7 @@ let level1 = new Level(bg2);
 let level2 = new Level(bg3);
 let gameOver = new Level(bg4);
 
+// keep track of score and game over condition
 function checkScore() {
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
@@ -342,7 +354,8 @@ function checkScore() {
       fruit.y,
       fruit.radius
     );
-
+    
+// double points for jumping 
     if (hit && !fruit.collected && !gameIsOver) {
       fruit.collected = true;
       score = score + 1;
@@ -352,7 +365,8 @@ function checkScore() {
       //console.log(score);
     }
   }
-
+  
+ // check obstacles collision
   for (let i = 0; i < badFruit; i++) {
     let rottFruit = badFruits[i];
     let hit2 = collideRectCircle(
@@ -378,6 +392,8 @@ function checkScore() {
     gameOver.gameOverDisplay();
   }
 }
+
+//keep track of losing points by clicking on obstacles or losing fruits
 function checkLost() {
   for (let i = 0; i < numFruit; i++) {
     let fruit = fruits[i];
@@ -411,6 +427,8 @@ function checkLost() {
     }
   }
 }
+
+// landmark for losing points
 function river() {
   fill(53, 195, 242);
   rect(0, height - 100, width, 100);
@@ -421,7 +439,7 @@ function river() {
 
 // }
 
-// Use up arrow to jump.
+// Use UP arrow to jump. 
 function keyPressed() {
   //console.log(keyCode);
   if (keyCode == UP_ARROW) {

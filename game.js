@@ -31,7 +31,7 @@ let nextLevel = false;
 let characterX;
 let characterY;
 let characterZ;
-let restart = false;
+let restart;
 let fallSpeed;
 let isJumping;
 let jumpHeight;
@@ -42,7 +42,7 @@ let rottenFruit;
 let fruitR;
 let button4;
 function setup() {
-  
+  restart = false;
   gameIsOver = false;
   createCanvas(windowWidth, windowHeight);
   numFruit = 3;
@@ -193,6 +193,7 @@ function draw() {
  
   button1.mousePressed(() => (pressed = true));
     button4.mousePressed(() => (restart = true));
+  
   if (pressed) {
      if(gameIsOver === true ){
     gameOver.gameOverDisplay();
@@ -204,19 +205,14 @@ function draw() {
       fruit.move();
       fruit.display();
     }}
-    // if (score === 5){
-    //   level2.display3();
-    //    for (let i = 0; i < fruits.length; i++) {
-    //       let fruit = fruits[i];
-    //       fruit.move();
-    //       fruit.display();
-    // }
+ 
 
     // character movement according to the mouse.
-    fill(200, 80, 80);
-    image(character, mouseX - 50, characterX, characterY, characterZ);
+   
     // end of charater movement
   }
+   fill(200, 80, 80);
+    image(character, mouseX - 50, characterX, characterY, characterZ);
   if (score >= 5) {
     nextLevel = true;
   }
@@ -261,6 +257,7 @@ class Level {
   }
   display1() {
     bg1 = background(bgImg1, height, width);
+    
   }
 
   display2() {
@@ -306,6 +303,12 @@ class Level {
     text("Game Over", 300, 350);
 
    button4.position(300, 400);
+      if (restart) {
+   
+    welcomeScreen.display1();
+         button4.position(600, 600);
+         button1.position(300, 400);
+  }
   
 
 //     if (restart) {

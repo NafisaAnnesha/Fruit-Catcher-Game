@@ -149,7 +149,7 @@ class BadFruit {
     this.lost = false;
   }
   obstMovement() {
-    this.y += this.fallSpeed;
+     this.fallSpeed++;
 
     if (this.y > height) {
       this.y = random(20, 180) * -1;
@@ -191,12 +191,13 @@ function draw() {
     image(character, mouseX - 50, characterX, characterY, characterZ);
     // end of charater movement
   }
-  if (score === 5) {
+  if (score >= 5) {
     nextLevel = true;
   }
   if (nextLevel) {
     score;
-    fallSpeed = random(1.5, 2);
+    
+    this.fallSpeed = random(2,3);
     level2.display3();
   }
   
@@ -253,6 +254,8 @@ class Level {
   }
   display3() {
     bg3 = background(bgImg3);
+   
+    fallSpeed = random(2, 2.5);
 
     river();
         for (let i = 0; i < badFruits.length; i++) {

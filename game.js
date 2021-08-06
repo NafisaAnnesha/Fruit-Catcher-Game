@@ -1,13 +1,14 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- * square, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ * square,size, loadFont, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let fruits;
 let watermelon, pear, orange, lemon, cherry, banana, apple;
 let rottenFruit, badFruit, badFruits;
 let numFruit;
+let fontBold;
 
 let lvl;
 let lvl1;
@@ -68,6 +69,7 @@ function setup() {
   rottenFruitSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F46.mp3?v=1628223849149')
   fallingSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F9RLYMKT-splash.mp3?v=1628224196061')
   
+  fontBold = loadFont("https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FKaushanScript-Regular.ttf?v=1628225696174")
   
   score = 0;
   lives = 5;
@@ -266,11 +268,7 @@ function draw() {
     level1.display2();
     button1.position(880, 880);
 
-    // for (let i = 0; i < fruits.length; i++) {
-    //   let fruit = fruits[i];
-    //   fruit.move();
-    //   fruit.display();
-    // }
+    
   }
   if (restart) {
     lvl = true; // current level 
@@ -327,18 +325,20 @@ class Level {
   }
   //welcome screen
   display1() {
-    // welcomeSound.play();
+    
     bg1 = background(bgImg1, height, width);
 
-    textSize(70)
+    textSize(90)
+    fill(245, 66, 96)
      textFont(fontBold);
     text("Catch The Fruit", 1/3*width, 1/2*height)
-    button1.position(80, 540);
+    button1.position(1/2*width, 0.7*height);
+    button1.size(150,50)
   }
 
-  //level1
+
   display2() {
-    //level1Sound.play();
+   
     bg2 = background(bgImg2, height, width);
 
     river();

@@ -241,8 +241,8 @@ function draw() {
   }
 
   if (nextLevel) {
-    w
-    level1Sound.stop();
+    //welcomeSound.stop()
+    //level1Sound.stop();
     //score;
 
     this.fallSpeed = random(2, 3);
@@ -306,8 +306,7 @@ class Level {
 
   //level2
   display3() {
-   // level1Sound.stop();
-    level2Sound.play();
+    
     bg3 = background(bgImg3);
 
     //fallSpeed = random(2, 2.5);
@@ -333,6 +332,7 @@ class Level {
 
   //game over   
   gameOverDisplay() {
+    level2Sound.stop();
     button4.position((width/2), 400);
     bg4 = background(bgImg4);
      
@@ -347,8 +347,8 @@ class Level {
 
 // reset game   :Nafisa
 function reStart() {
-  level1Sound.stop();
-  level2Sound.stop();
+  //level1Sound.stop();
+ // level2Sound.stop();
   button4.position(8000, 8000);
   setup();
 
@@ -413,7 +413,7 @@ function checkScore() {
     gameIsOver = true;
   }
   if (gameIsOver) {
-    level2Sound.stop();
+    //level2Sound.stop();
     gameOver.gameOverDisplay();
   }
 }

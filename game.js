@@ -1,7 +1,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- * square,size,style, LEFT, loadFont, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ * square,size,style, ESCAPE,LEFT, loadFont, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let fruits;
@@ -354,16 +354,16 @@ class Level {
   display1() {
     
     bg1 = background(bgImg1, height, width);
-        fill(36, 42, 43)
-    textSize(20)
-   textFont(fontBold);
-    text("Collect the fruits to earn points" , width-1400, height-600 )
-    text("Move the mouse to collect fruits" , width-1400, height-500 )
-    text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
-    text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
-    text("failing to catch 5 fruits will result in Game Over" , width-1400, height-200 )
+   //      fill(36, 42, 43)
+   //  textSize(20)
+   // textFont(fontBold);
+   //  text("Collect the fruits to earn points" , width-1400, height-600 )
+   //  text("Move the mouse to collect fruits" , width-1400, height-500 )
+   //  text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
+   //  text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
+   //  text("failing to catch 5 fruits will result in Game Over" , width-1400, height-200 )
   
-    
+ 
 
     textSize(90);
     fill(245, 66, 96);
@@ -440,19 +440,18 @@ class Level {
     textSize(30);
   }
 
-//   instructionDisplay() {
-//     button5.position(height-700, width-1400)
-//    button5 = createButton("back")
-//     //button5.position(width-1400, height-100)
-//     textSize(30)
-//     fill(36, 42, 43)
-//     text("Collect the fruits to earn points" , width-1400, height-600 )
-//     text("Move the mouse to collect fruits" , width-1400, height-500 )
-//     text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
-//     text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
-//     text("failing to catch 5 fruits will result in Game Over" , width-1400, height-200 )
+  instructionDisplay() {
+   
+    //button5.position(width-1400, height-100)
+    textSize(30)
+    fill(36, 42, 43)
+    text("Collect the fruits to earn points" , width-1400, height-600 )
+    text("Move the mouse to collect fruits" , width-1400, height-500 )
+    text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
+    text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
+    text("failing to catch 5 fruits will result in Game Over" , width-1400, height-200 )
        
-//   }
+  }
 }
 
 // reset game   :Nafisa
@@ -582,5 +581,14 @@ function keyPressed() {
   //console.log(keyCode);
   if (keyCode == UP_ARROW) {
     isJumping = true;
+    
+    if(keyCode == LEFT_ARROW){
+      instruction.instructionDisplay()
+    }
+    else{
+      if(keyCode == ESCAPE){
+        welcomeScreen.display1();
+      }
+    }
   }
 }

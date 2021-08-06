@@ -13,6 +13,7 @@ let lvl;
 let lvl1;
 let lvl2;
 let finish;
+let rottenFruitSound;
 
 let pics;
 let gameIsOver;
@@ -40,6 +41,8 @@ let restart;
 let fallSpeed;
 // let fruitR;
 
+let jumpSound;
+
 function setup() {
   lvl = true;
   
@@ -59,6 +62,9 @@ function setup() {
     "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F16%20BGM%20%2316.mp3?v=1628217151230"
   );
   gameOverSound = createAudio("https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F10%20BGM%20%2310.mp3?v=1628222982556");
+  
+  jumpSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F26%20Jingle%20%2304.mp3?v=1628223653865')
+  rottenFruitSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F46.mp3?v=1628223849149')
   score = 0;
   lives = 5;
 
@@ -263,6 +269,7 @@ function draw() {
   if (restart) {
     lvl = true;
     lvl1 = false;
+    gameOverSound.stop();
     level1Sound.stop();
     level2Sound.stop();
     reStart();
@@ -387,6 +394,7 @@ class Level {
 
 // reset game   :Nafisa
 function reStart() {
+
   //level1Sound.stop();
   // level2Sound.stop();
   button4.position(8000, 8000);
@@ -425,6 +433,7 @@ function checkScore() {
       score = score + 1;
       if (isJumping) {
         score = score + 1;
+        jumpSound.play();
       }
       //console.log(score);
     }
@@ -445,6 +454,7 @@ function checkScore() {
     if (hit2 && !rottFruit.collected && !gameIsOver) {
       rottFruit.collected = true;
       score = score - 1;
+      rottenFruitSound.play
 
       //console.log(score);
     }
@@ -453,6 +463,8 @@ function checkScore() {
     gameIsOver = true;
   }
   if (gameIsOver) {
+    lvl1 = false;
+    lvl2 = false;
     finish = true;
     gameOver.gameOverDisplay();
   }

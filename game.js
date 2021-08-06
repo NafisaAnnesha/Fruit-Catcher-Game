@@ -1,7 +1,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- * play, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ * square, play, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let fruits;
@@ -42,6 +42,7 @@ let fallSpeed;
 // let fruitR;
 
 let jumpSound;
+let fallingSound;
 
 function setup() {
   lvl = true;
@@ -65,6 +66,9 @@ function setup() {
   
   jumpSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F26%20Jingle%20%2304.mp3?v=1628223653865')
   rottenFruitSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F46.mp3?v=1628223849149')
+  fallingSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F9RLYMKT-splash.mp3?v=1628224196061')
+  
+  
   score = 0;
   lives = 5;
 
@@ -226,6 +230,8 @@ class BadFruit {
 } // end BadFruit/ obstacles
 
 function draw() {
+  
+  //play sound on each level
   welcomeScreen.display1();
   if (lvl) {
     welcomeSound.play();
@@ -267,7 +273,7 @@ function draw() {
     // }
   }
   if (restart) {
-    lvl = true;
+    lvl = true; // current level 
     lvl1 = false;
     gameOverSound.stop();
     level1Sound.stop();
@@ -323,7 +329,7 @@ class Level {
   display1() {
     // welcomeSound.play();
     bg1 = background(bgImg1, height, width);
-
+    square(30, 20, 55);
     button1.position(80, 540);
   }
 
@@ -454,7 +460,7 @@ function checkScore() {
     if (hit2 && !rottFruit.collected && !gameIsOver) {
       rottFruit.collected = true;
       score = score - 1;
-      rottenFruitSound.play
+      rottenFruitSound.play();
 
       //console.log(score);
     }
@@ -486,6 +492,7 @@ function checkLost() {
     if (lost && !fruit.lost && !fruit.collected && !gameIsOver) {
       fruit.lost = true;
       lives = lives - 1;
+      fallingSound.play();
     }
   }
   for (let i = 0; i < badFruit; i++) {
@@ -501,6 +508,7 @@ function checkLost() {
     );
     if (lost && !badFruit.lost && !badFruit.collected) {
       rottFruit.lost = true;
+      fallingSound.play();
     }
   }
 }

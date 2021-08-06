@@ -14,6 +14,7 @@ let gameIsOver;
 
 let welcomeSound;
 let level1Sound;
+let level2Sound;
 
 let lives;
 let score;
@@ -38,6 +39,8 @@ function setup() {
     welcomeSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FDefense%20Line.mp3?v=1628214995780')
    mySound = createAudio('https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2Fmixkit-extra-bonus-in-a-video-game-2045.mp3?v=1628145860740');
   level1Sound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F03%20BGM%20%2303.mp3?v=1628216649532')
+  level2Sound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F16%20BGM%20%2316.mp3?v=1628217151230')
+  
   score = 0;
   lives = 5;
   
@@ -233,14 +236,18 @@ function draw() {
   //proceed to next level  :Nafisa
   if (score >= 5) {
     nextLevel = true;
+    level1Sound.stop();
   }
 
   if (nextLevel) {
-    level1Sound.stop();
-    score;
+    
+    level2Sound.play();
+    //score;
 
     this.fallSpeed = random(2, 3);
     level2.display3();
+  } else{
+    
   }
 
   // Jumping Powerup   : Mariam
@@ -337,6 +344,8 @@ class Level {
 
 // reset game   :Nafisa
 function reStart() {
+  level1Sound.stop();
+  level2Sound.stop();
   button4.position(8000, 8000);
   setup();
 
@@ -401,6 +410,7 @@ function checkScore() {
     gameIsOver = true;
   }
   if (gameIsOver) {
+    level2Sound.stop();
     gameOver.gameOverDisplay();
   }
 }

@@ -102,7 +102,7 @@ function setup() {
   button1 = createButton("Play ");
   //button1.style('background-color', col);
   //button1.position(300, 400);
-  button5 = createButton("back")
+
   button4 = createButton("Restart");
   button4.size(150, 50);
   button4.style("background-color", btnCol);
@@ -274,20 +274,20 @@ function draw() {
  
   button1.mousePressed(() => (pressed = true));
   button4.mousePressed(() => (restart = true));
-  button2.mousePressed(() => (pressed2 = true));
+  //button2.mousePressed(() => (pressed2 = true));
   
 
-  if (pressed2) {
-    instruction.instructionDisplay();
-    //console.log("hey")
+//   if (pressed2) {
+//     instruction.instructionDisplay();
+//     //console.log("hey")
      
-  }
+//   }
   
-  if (pressed3) {
-     welcomeScreen.display1();
-    //console.log("hey")
+//   if (pressed3) {
+//      welcomeScreen.display1();
+//     //console.log("hey")
      
-  }
+//   }
   if (pressed) {
     lvl = false;
     lvl1 = true;
@@ -429,19 +429,19 @@ class Level {
     textSize(30);
   }
 
-  instructionDisplay() {
+//   instructionDisplay() {
     
-   
-    button5.position(width-1400, height-100)
-    textSize(30)
-    fill(36, 42, 43)
-    text("Collect the fruits to earn points" , width-1400, height-600 )
-    text("Move the mouse to collect fruits" , width-1400, height-500 )
-    text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
-    text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
-    text("failing to catch 5 fruits will result in Game Over" , width-1400, height-200 )
+//     //button5 = createButton("back")
+//     button5.position(width-1400, height-100)
+//     textSize(30)
+//     fill(36, 42, 43)
+//     text("Collect the fruits to earn points" , width-1400, height-600 )
+//     text("Move the mouse to collect fruits" , width-1400, height-500 )
+//     text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
+//     text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
+//     text("failing to catch 5 fruits will result in Game Over" , width-1400, height-200 )
        
-  }
+//   }
 }
 
 // reset game   :Nafisa

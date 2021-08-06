@@ -98,12 +98,12 @@ function setup() {
 
   numFruit = 3;
   badFruit = 2;
-  
+
   button1 = createButton("Play ");
-   button1.style('background-color', btnCol);
+  button1.style("background-color", btnCol);
   // button1.position(300, 400);
 
-   button4 = createButton("Restart");
+  button4 = createButton("Restart");
   // button5 = createButton("back");
   button4.size(150, 50);
   button4.style("background-color", btnCol);
@@ -187,7 +187,7 @@ class Fruit {
     this.radius = random(50, 60);
     this.width = 40;
     this.height = 5;
-    this.fallSpeed = random( 2.5,2.8);
+    this.fallSpeed = random(2.5, 2.8);
     this.collected = false;
     this.lost = false;
   }
@@ -272,28 +272,14 @@ function draw() {
     gameOverSound.stop();
   }
   checkLost();
- 
+
   button1.mousePressed(() => (pressed = true));
   button4.mousePressed(() => (restart = true));
-  // button2.mousePressed(() => (pressed2 = true));
-  // button5.mousePressed(() => (pressed3 = true));
 
-//   if (pressed2) {
-//     instruction.instructionDisplay();
-//     //console.log("hey")
-     
-//   }
-  
-  // if (pressed3) {
-  //    welcomeScreen.display1();
-  //   //console.log("hey")
-  //    button5.position(height, width)
-  // }
   if (pressed) {
     lvl = false;
     lvl1 = true;
-    // welcomeSound.stop();
-    //level1Sound.play();
+
     level1.display2();
     button1.position(880, 880);
   }
@@ -352,18 +338,7 @@ class Level {
   }
   //welcome screen
   display1() {
-    
     bg1 = background(bgImg1, height, width);
-   //      fill(36, 42, 43)
-   //  textSize(20)
-   // textFont(fontBold);
-   //  text("Collect the fruits to earn points" , width-1400, height-600 )
-   //  text("Move the mouse to collect fruits" , width-1400, height-500 )
-   //  text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
-   //  text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
-   //  text("failing to catch 5 fruits will result in Game Over" , width-1400, height-200 )
-  
- 
 
     textSize(90);
     fill(245, 66, 96);
@@ -426,7 +401,6 @@ class Level {
 
   //game over
   gameOverDisplay() {
-    //level2Sound.stop();
     button4.position(650, 450);
     bg4 = background(bgImg4);
 
@@ -438,21 +412,6 @@ class Level {
     text(`Fruits Collected: ${score}`, (1 / 2) * width, (1 / 3) * height);
     text("Game Over", (1 / 2) * width, (1 / 2) * height);
     textSize(30);
-  }
-
-  instructionDisplay() {
-      bg5 = background(50,50,50,50)
-    //button5.position(width-1400, height-100)
-    square (50,50,50)
-     console.log("hey")
-    textSize(30)
-    fill(36, 42, 43)
-    text("Collect the fruits to earn points" , 400, 600 )
-    text("Move the mouse to collect fruits" , width-1400, height-500 )
-    text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
-    text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
-    text("failing to catch 5 fruits will result in Game Over" , width-1400, height-200 )
-       
   }
 }
 
@@ -474,7 +433,7 @@ let welcomeScreen = new Level(bg1);
 let level1 = new Level(bg2, lvl1);
 let level2 = new Level(bg3, lvl2);
 let gameOver = new Level(bg4);
-let instruction = new Level(bg5);
+//let instruction = new Level(bg5);
 
 // keep track of score and game over condition   : Nafisa/ Mariam
 function checkScore() {
@@ -582,16 +541,6 @@ function river() {
 function keyPressed() {
   //console.log(keyCode);
   if (keyCode == UP_ARROW) {
-    isJumping = true;}
-    
-    if(keyCode == LEFT_ARROW){
-      instruction.instructionDisplay();
-     
-    }
-    else{
-      if(keyCode == ESCAPE){
-        welcomeScreen.display1();
-      }
-    }
-  
+    isJumping = true;
+  }
 }

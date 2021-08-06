@@ -241,8 +241,8 @@ function draw() {
   }
 
   if (nextLevel) {
-    
-    //level1Sound.stop();
+    w
+    level1Sound.stop();
     //score;
 
     this.fallSpeed = random(2, 3);
@@ -306,7 +306,7 @@ class Level {
 
   //level2
   display3() {
-    level1Sound.stop();
+   // level1Sound.stop();
     level2Sound.play();
     bg3 = background(bgImg3);
 

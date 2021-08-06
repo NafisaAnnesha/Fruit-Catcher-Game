@@ -8,7 +8,8 @@ let fruits;
 let watermelon, pear, orange, lemon, cherry, banana, apple;
 let rottenFruit, badFruit, badFruits;
 let numFruit;
-
+let isPlaying;
+let isPlaying2;
 let pics;
 let gameIsOver;
 
@@ -35,7 +36,7 @@ let fallSpeed;
 // let fruitR;
 
 function setup() {
-  
+  isPlaying = false;
     welcomeSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FDefense%20Line.mp3?v=1628214995780')
    mySound = createAudio('https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2Fmixkit-extra-bonus-in-a-video-game-2045.mp3?v=1628145860740');
   level1Sound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F03%20BGM%20%2303.mp3?v=1628216649532')
@@ -49,7 +50,7 @@ function setup() {
   restart = false;
   restart = false;
   gameIsOver = false;
-  
+  isPlaying2 = false;
   createCanvas(windowWidth, windowHeight);
   
   numFruit = 3;
@@ -211,7 +212,7 @@ function draw() {
 
   if (pressed) {
     
-    welcomeSound.stop();
+   // welcomeSound.stop();
     
     level1.display2();
     button1.position(880, 880);
@@ -239,7 +240,10 @@ function draw() {
     nextLevel = true;
     
   }
-
+if(isPlaying){
+  welcomeSound.stop();
+  level1Sound.play()
+}
   if (nextLevel) {
     //welcomeSound.stop()
     //level1Sound.stop();
@@ -274,6 +278,7 @@ class Level {
   }
   //welcome screen
   display1() {
+    
     welcomeSound.play();
     bg1 = background(bgImg1, height, width);
     button1.position(80, 540);
@@ -281,6 +286,7 @@ class Level {
 
   //level1
   display2() {
+    isPlaying = true;
     
     level1Sound.play();
     bg2 = background(bgImg2, height, width);
@@ -306,7 +312,8 @@ class Level {
 
   //level2
   display3() {
-    
+    isPlaying = false;
+    isPlaying2 = true;
     bg3 = background(bgImg3);
 
     //fallSpeed = random(2, 2.5);

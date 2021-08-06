@@ -1,7 +1,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- * square, play, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ * square, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let fruits;
@@ -231,7 +231,7 @@ class BadFruit {
 
 function draw() {
   
-  //play sound on each level
+  //play sound on each level : Nafisa
   welcomeScreen.display1();
   if (lvl) {
     welcomeSound.play();
@@ -329,7 +329,10 @@ class Level {
   display1() {
     // welcomeSound.play();
     bg1 = background(bgImg1, height, width);
-    square(30, 20, 55);
+
+    textSize(70)
+     textFont(fontBold);
+    text("Catch The Fruit", 1/3*width, 1/2*height)
     button1.position(80, 540);
   }
 

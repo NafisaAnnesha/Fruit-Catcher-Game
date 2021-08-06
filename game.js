@@ -104,6 +104,7 @@ function setup() {
   //button1.position(300, 400);
 
   button4 = createButton("Restart");
+  button5 = createButton("back");
   button4.size(150, 50);
   button4.style("background-color", btnCol);
 
@@ -186,7 +187,7 @@ class Fruit {
     this.radius = random(50, 60);
     this.width = 40;
     this.height = 5;
-    this.fallSpeed = random(2, 2.5);
+    this.fallSpeed = random( 2.5,2.8);
     this.collected = false;
     this.lost = false;
   }
@@ -274,20 +275,20 @@ function draw() {
  
   button1.mousePressed(() => (pressed = true));
   button4.mousePressed(() => (restart = true));
-  //button2.mousePressed(() => (pressed2 = true));
-  
+  button2.mousePressed(() => (pressed2 = true));
+  button5.mousePressed(() => (pressed3 = true));
 
-//   if (pressed2) {
-//     instruction.instructionDisplay();
-//     //console.log("hey")
+  if (pressed2) {
+    instruction.instructionDisplay();
+    //console.log("hey")
      
-//   }
+  }
   
-//   if (pressed3) {
-//      welcomeScreen.display1();
-//     //console.log("hey")
-     
-//   }
+  if (pressed3) {
+     welcomeScreen.display1();
+    //console.log("hey")
+     button5.position(height, width)
+  }
   if (pressed) {
     lvl = false;
     lvl1 = true;
@@ -322,7 +323,7 @@ function draw() {
     //score;
     lvl1 = false;
     lvl2 = true;
-    this.fallSpeed = random(2, 3);
+    this.fallSpeed = random(3, 3.5);
     level2.display3();
   }
 
@@ -353,6 +354,7 @@ class Level {
   display1() {
     bg1 = background(bgImg1, height, width);
     button2 = createButton("Instructions");
+    button5.position(height-100, width-1400)
 
     textSize(90);
     fill(245, 66, 96);
@@ -429,19 +431,19 @@ class Level {
     textSize(30);
   }
 
-//   instructionDisplay() {
+  instructionDisplay() {
     
-//     //button5 = createButton("back")
-//     button5.position(width-1400, height-100)
-//     textSize(30)
-//     fill(36, 42, 43)
-//     text("Collect the fruits to earn points" , width-1400, height-600 )
-//     text("Move the mouse to collect fruits" , width-1400, height-500 )
-//     text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
-//     text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
-//     text("failing to catch 5 fruits will result in Game Over" , width-1400, height-200 )
+   button5 = createButton("back")
+    //button5.position(width-1400, height-100)
+    textSize(30)
+    fill(36, 42, 43)
+    text("Collect the fruits to earn points" , width-1400, height-600 )
+    text("Move the mouse to collect fruits" , width-1400, height-500 )
+    text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
+    text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
+    text("failing to catch 5 fruits will result in Game Over" , width-1400, height-200 )
        
-//   }
+  }
 }
 
 // reset game   :Nafisa

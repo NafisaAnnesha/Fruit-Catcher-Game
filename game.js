@@ -273,9 +273,11 @@ function draw() {
   button1.mousePressed(() => (pressed = true));
   button4.mousePressed(() => (restart = true));
   button2.mousePressed(() => (pressed2 = true));
-  button2.
-    if (pressed2) {
-   instruction.instructionDisplay();
+
+  if (pressed2) {
+    instruction.instructionDisplay();
+    //console.log("hey")
+     
   }
   if (pressed) {
     lvl = false;
@@ -341,13 +343,14 @@ class Level {
   //welcome screen
   display1() {
     bg1 = background(bgImg1, height, width);
-    button2 = createButton("Instructions" )
-    
+    button2 = createButton("Instructions");
+
     textSize(90);
     fill(245, 66, 96);
     textFont(fontBold);
     text("Catch The Fruit", (1 / 3) * width, (1 / 2) * height);
     button1.position((1 / 2) * width, 0.7 * height);
+    button2.position((1 / 3) * height, (1 / 4) * height);
     button1.size(150, 50);
     button1.style("background-color", btnCol);
   }
@@ -411,14 +414,14 @@ class Level {
 
     textSize(70);
     textAlign(CENTER);
-    
-     text(`Fruits Collected: ${score}`, 1/2*width, 1/3*height);
+
+    text(`Fruits Collected: ${score}`, (1 / 2) * width, (1 / 3) * height);
     text("Game Over", (1 / 2) * width, (1 / 2) * height);
     textSize(30);
   }
-  
-  instructionDisplay(){
-    square(1/2*width,height)
+
+  instructionDisplay() {
+   square(width-400, height-100, 1/2*height);
   }
 }
 

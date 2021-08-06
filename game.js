@@ -48,7 +48,9 @@ function setup() {
   
   numFruit = 3;
   badFruit = 2;
-  button1 = createButton("click me ");
+  let col = color(25, 23, 200, 50);
+  button1 = createButton("Play ");
+  //button1.style('background-color', col);
   //button1.position(300, 400);
 
   button4 = createButton("restart");

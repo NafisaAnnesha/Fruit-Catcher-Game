@@ -37,7 +37,7 @@ function setup() {
   
     welcomeSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FDefense%20Line.mp3?v=1628214995780')
    mySound = createAudio('https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2Fmixkit-extra-bonus-in-a-video-game-2045.mp3?v=1628145860740');
-  level1Sound 
+  level1Sound = createAudio('')
   score = 0;
   lives = 5;
   
@@ -207,7 +207,9 @@ function draw() {
   button4.mousePressed(() => (restart = true));
 
   if (pressed) {
+    
     welcomeSound.stop();
+    level1Sound.play();
     level1.display2();
     button1.position(880, 880);
    
@@ -234,6 +236,7 @@ function draw() {
   }
 
   if (nextLevel) {
+    level1Sound.stop();
     score;
 
     this.fallSpeed = random(2, 3);

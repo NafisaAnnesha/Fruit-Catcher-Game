@@ -27,6 +27,8 @@ let bg1, bg2, bg3, bg4;
 let button1, button2, button3, button4;
 let bgImg1, bgImg2, bgImg3, bgImg4;
 
+let lvl1;
+let lvl2; 
 
 let pressed;
 let pressed2;
@@ -213,7 +215,7 @@ function draw() {
   if (pressed) {
     
     welcomeSound.stop();
-    level1Sound.play();
+    //level1Sound.play();
     level1.display2();
     button1.position(880, 880);
    
@@ -245,7 +247,7 @@ function draw() {
     //welcomeSound.stop()
     //level1Sound.stop();
     //score;
-    level1Sound = level2Sound;
+    
     this.fallSpeed = random(2, 3);
     level2.display3();
   } 
@@ -269,14 +271,16 @@ function draw() {
 } // end draw
 // levels display : Nafisa
 class Level {
-  constructor(bg) {
+  constructor(bg, lvl) {
     //this.button = button;
     this.background = bg;
+    this.sound = lvl;
   }
   //welcome screen
   display1() {
     welcomeSound.play();
     bg1 = background(bgImg1, height, width);
+   
     button1.position(80, 540);
   }
 
@@ -285,7 +289,7 @@ class Level {
     
     //level1Sound.play();
     bg2 = background(bgImg2, height, width);
-
+    lvl1 = level1Sound.play();
     river();
     checkLost();
 
@@ -307,9 +311,9 @@ class Level {
 
   //level2
   display3() {
-    
+    level1Sound.stop();
     bg3 = background(bgImg3);
-
+    lvl2 = level2Sound.play();
     //fallSpeed = random(2, 2.5);
 
     river();
@@ -361,8 +365,8 @@ function reStart() {
 // end of charater movement
 
 let welcomeScreen = new Level(bg1);
-let level1 = new Level(bg2);
-let level2 = new Level(bg3);
+let level1 = new Level(bg2, lvl1);
+let level2 = new Level(bg3, lvl2);
 let gameOver = new Level(bg4);
 
 // keep track of score and game over condition   : Nafisa/ Mariam

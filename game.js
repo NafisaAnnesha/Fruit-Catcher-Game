@@ -313,13 +313,15 @@ class Level {
 
   //game over   
   gameOverDisplay() {
-    button4.position(600, 400);
+    button4.position((width/2), 400);
     bg4 = background(bgImg4);
-
+     
     fill(235, 64, 52);
-    textSize(70);
+  
     textAlign(CENTER);
-    text("Game Over", (width * 1) / 2, 350);
+    textSize(70);
+    text("Game Over", (width ) / 2, 350);
+       textSize(30);
   }
 }
 

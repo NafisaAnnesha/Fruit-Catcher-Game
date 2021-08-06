@@ -102,7 +102,7 @@ function setup() {
   button1 = createButton("Play ");
   //button1.style('background-color', col);
   //button1.position(300, 400);
-
+  button5 = createButton("back")
   button4 = createButton("Restart");
   button4.size(150, 50);
   button4.style("background-color", btnCol);
@@ -431,7 +431,7 @@ class Level {
 
   instructionDisplay() {
     
-   button5 = createButton("back")
+   
     button5.position(width-1400, height-100)
     textSize(30)
     fill(36, 42, 43)

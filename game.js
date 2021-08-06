@@ -12,6 +12,7 @@ let numFruit;
 let lvl;
 let lvl1;
 let lvl2;
+let finish;
 
 let pics;
 let gameIsOver;
@@ -19,6 +20,7 @@ let gameIsOver;
 let welcomeSound;
 let level1Sound;
 let level2Sound;
+let gameOverSound;
 
 let lives;
 let score;
@@ -31,8 +33,6 @@ let bg1, bg2, bg3, bg4;
 let button1, button2, button3, button4;
 let bgImg1, bgImg2, bgImg3, bgImg4;
 
-
-
 let pressed;
 let pressed2;
 let nextLevel;
@@ -42,24 +42,34 @@ let fallSpeed;
 
 function setup() {
   lvl = true;
+  
   lvl1 = false;
   lvl2 = false;
-    welcomeSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FDefense%20Line.mp3?v=1628214995780')
-   mySound = createAudio('https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2Fmixkit-extra-bonus-in-a-video-game-2045.mp3?v=1628145860740');
-  level1Sound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F03%20BGM%20%2303.mp3?v=1628216649532')
-  level2Sound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F16%20BGM%20%2316.mp3?v=1628217151230')
-  
+  finish = false;
+  welcomeSound = createAudio(
+    "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FDefense%20Line.mp3?v=1628214995780"
+  );
+  mySound = createAudio(
+    "https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2Fmixkit-extra-bonus-in-a-video-game-2045.mp3?v=1628145860740"
+  );
+  level1Sound = createAudio(
+    "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F03%20BGM%20%2303.mp3?v=1628216649532"
+  );
+  level2Sound = createAudio(
+    "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F16%20BGM%20%2316.mp3?v=1628217151230"
+  );
+  gameOverSound = createAudio("https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F10%20BGM%20%2310.mp3?v=1628222982556");
   score = 0;
   lives = 5;
-  
+
   nextLevel = false;
   pressed = false;
   restart = false;
   restart = false;
   gameIsOver = false;
-  
+
   createCanvas(windowWidth, windowHeight);
-  
+
   numFruit = 3;
   badFruit = 2;
   let col = color(25, 23, 200, 50);
@@ -128,7 +138,7 @@ function setup() {
     fruits.push(newFruit);
   }
 
-  // Jumping (Mariam). 
+  // Jumping (Mariam).
   characterX = height - 250;
   characterY = 100;
   characterZ = 100;
@@ -136,8 +146,8 @@ function setup() {
   isJumping = false;
   jumpHeight = 50;
   jumpDirection = "UP";
-  
-  // end jumpig. 
+
+  // end jumpig.
 } // end setup
 //fruit    : Rodjina
 class Fruit {
@@ -210,24 +220,26 @@ class BadFruit {
 } // end BadFruit/ obstacles
 
 function draw() {
- 
   welcomeScreen.display1();
-  if(lvl){
+  if (lvl) {
     welcomeSound.play();
-  }else{
+  } else {
     welcomeSound.stop();
   }
-  if (lvl1){
+  if (lvl1) {
     level1Sound.play();
-  }
-  else{
+  } else {
     level1Sound.stop();
   }
-  if(lvl2){
+  if (lvl2) {
     level2Sound.play();
-  }
-  else{
+  } else {
     level2Sound.stop();
+  }
+   if (finish) {
+    gameOverSound.play();
+  } else {
+    gameOverSound.stop();
   }
   checkLost();
 
@@ -237,11 +249,11 @@ function draw() {
   if (pressed) {
     lvl = false;
     lvl1 = true;
-   // welcomeSound.stop();
+    // welcomeSound.stop();
     //level1Sound.play();
     level1.display2();
     button1.position(880, 880);
-   
+
     // for (let i = 0; i < fruits.length; i++) {
     //   let fruit = fruits[i];
     //   fruit.move();
@@ -249,21 +261,22 @@ function draw() {
     // }
   }
   if (restart) {
+    lvl = true;
+    lvl1 = false;
+    level1Sound.stop();
+    level2Sound.stop();
     reStart();
     button4.position(8000, 800);
   }
 
-  
-  
-// Character movement (Mariam)
+  // Character movement (Mariam)
   fill(200, 80, 80);
   image(character, mouseX - 50, characterX, characterY, characterZ);
-  // end of character movement. 
+  // end of character movement.
   //proceed to next level  :Nafisa
   if (score >= 5) {
     //level1Sound.stop();
     nextLevel = true;
-    
   }
 
   if (nextLevel) {
@@ -274,7 +287,7 @@ function draw() {
     lvl2 = true;
     this.fallSpeed = random(2, 3);
     level2.display3();
-  } 
+  }
 
   // Jumping Powerup   : Mariam
   if (isJumping) {
@@ -298,22 +311,20 @@ class Level {
   constructor(bg) {
     //this.button = button;
     this.background = bg;
-    
   }
   //welcome screen
   display1() {
-   // welcomeSound.play();
+    // welcomeSound.play();
     bg1 = background(bgImg1, height, width);
-   
+
     button1.position(80, 540);
   }
 
   //level1
   display2() {
-    
     //level1Sound.play();
     bg2 = background(bgImg2, height, width);
-    
+
     river();
     checkLost();
 
@@ -337,7 +348,7 @@ class Level {
   display3() {
     ///level1Sound.stop();
     bg3 = background(bgImg3);
-   
+
     //fallSpeed = random(2, 2.5);
 
     river();
@@ -359,25 +370,25 @@ class Level {
     image(character, mouseX - 50, characterX, characterY, characterZ);
   }
 
-  //game over   
+  //game over
   gameOverDisplay() {
     //level2Sound.stop();
-    button4.position((width/2), 400);
+    button4.position(width / 2, 400);
     bg4 = background(bgImg4);
-     
+
     fill(235, 64, 52);
-  
+
     textAlign(CENTER);
     textSize(70);
-    text("Game Over", (width ) / 2, 350);
-       textSize(30);
+    text("Game Over", width / 2, 350);
+    textSize(30);
   }
 }
 
 // reset game   :Nafisa
 function reStart() {
   //level1Sound.stop();
- // level2Sound.stop();
+  // level2Sound.stop();
   button4.position(8000, 8000);
   setup();
 
@@ -442,7 +453,7 @@ function checkScore() {
     gameIsOver = true;
   }
   if (gameIsOver) {
-    //level2Sound.stop();
+    finish = true;
     gameOver.gameOverDisplay();
   }
 }

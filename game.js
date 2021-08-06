@@ -48,11 +48,15 @@ let fallingSound;
 let btnCol;
 
 function setup() {
+  //current level
   lvl = true;
 
   lvl1 = false;
   lvl2 = false;
   finish = false;
+  
+  
+  //add sound  
   welcomeSound = createAudio(
     "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FDefense%20Line.mp3?v=1628214995780"
   );
@@ -272,10 +276,10 @@ function draw() {
     gameOverSound.stop();
   }
   checkLost();
-
+ 
   button1.mousePressed(() => (pressed = true));
   button4.mousePressed(() => (restart = true));
-
+//button pressed
   if (pressed) {
     lvl = false;
     lvl1 = true;
@@ -304,9 +308,7 @@ function draw() {
   }
 
   if (nextLevel) {
-    //welcomeSound.stop()
-    //level1Sound.stop();
-    //score;
+  
     lvl1 = false;
     lvl2 = true;
     this.fallSpeed = random(3, 3.5);
@@ -414,7 +416,7 @@ class Level {
     textSize(30);
   }
 }
-
+//end of level
 // reset game   :Nafisa
 function reStart() {
   //level1Sound.stop();
@@ -425,9 +427,7 @@ function reStart() {
   welcomeScreen.display1();
 }
 
-// character movement according to the mouse.
 
-// end of charater movement
 
 let welcomeScreen = new Level(bg1);
 let level1 = new Level(bg2, lvl1);

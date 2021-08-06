@@ -1,7 +1,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- * square,size,style, loadFont, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ * square,size,style, LEFT, loadFont, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let fruits;
@@ -48,7 +48,7 @@ let btnCol;
 
 function setup() {
   lvl = true;
-  
+
   lvl1 = false;
   lvl2 = false;
   finish = false;
@@ -64,14 +64,24 @@ function setup() {
   level2Sound = createAudio(
     "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F16%20BGM%20%2316.mp3?v=1628217151230"
   );
-  gameOverSound = createAudio("https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F10%20BGM%20%2310.mp3?v=1628222982556");
-  
-  jumpSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F26%20Jingle%20%2304.mp3?v=1628223653865')
-  rottenFruitSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F46.mp3?v=1628223849149')
-  fallingSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F9RLYMKT-splash.mp3?v=1628224196061')
-  
-  fontBold = loadFont("https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FKaushanScript-Regular.ttf?v=1628225696174")
-  btnCol = color(227, 166, 86)
+  gameOverSound = createAudio(
+    "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F10%20BGM%20%2310.mp3?v=1628222982556"
+  );
+
+  jumpSound = createAudio(
+    "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F26%20Jingle%20%2304.mp3?v=1628223653865"
+  );
+  rottenFruitSound = createAudio(
+    "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F46.mp3?v=1628223849149"
+  );
+  fallingSound = createAudio(
+    "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F9RLYMKT-splash.mp3?v=1628224196061"
+  );
+
+  fontBold = loadFont(
+    "https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FKaushanScript-Regular.ttf?v=1628225696174"
+  );
+  btnCol = color(227, 166, 86);
   score = 0;
   lives = 5;
 
@@ -91,8 +101,8 @@ function setup() {
   //button1.position(300, 400);
 
   button4 = createButton("Restart");
-  button4.size(150,50)
-  button4.style('background-color', btnCol)
+  button4.size(150, 50);
+  button4.style("background-color", btnCol);
 
   // FRUIT IMAGES   :Rodjina
   rottenFruit = loadImage(
@@ -235,7 +245,6 @@ class BadFruit {
 } // end BadFruit/ obstacles
 
 function draw() {
-  
   //play sound on each level : Nafisa
   welcomeScreen.display1();
   if (lvl) {
@@ -253,7 +262,7 @@ function draw() {
   } else {
     level2Sound.stop();
   }
-   if (finish) {
+  if (finish) {
     gameOverSound.play();
   } else {
     gameOverSound.stop();
@@ -270,11 +279,9 @@ function draw() {
     //level1Sound.play();
     level1.display2();
     button1.position(880, 880);
-
-    
   }
   if (restart) {
-    lvl = true; // current level 
+    lvl = true; // current level
     lvl1 = false;
     gameOverSound.stop();
     level1Sound.stop();
@@ -328,21 +335,18 @@ class Level {
   }
   //welcome screen
   display1() {
-    
     bg1 = background(bgImg1, height, width);
 
-    textSize(90)
-    fill(245, 66, 96)
-     textFont(fontBold);
-    text("Catch The Fruit", 1/3*width, 1/2*height)
-    button1.position(1/2*width, 0.7*height);
-    button1.size(150,50)
-    button1.style('background-color', btnCol)
+    textSize(90);
+    fill(245, 66, 96);
+    textFont(fontBold);
+    text("Catch The Fruit", (1 / 3) * width, (1 / 2) * height);
+    button1.position((1 / 2) * width, 0.7 * height);
+    button1.size(150, 50);
+    button1.style("background-color", btnCol);
   }
 
-
   display2() {
-   
     bg2 = background(bgImg2, height, width);
 
     river();
@@ -359,8 +363,9 @@ class Level {
     // button2.position(300, 550);
     textSize(30);
     fill(182, 252, 3);
-    text(`Fruits Collected: ${score}`, 10, 30);
-    text(`Lives: ${lives}`, 10, 60);
+    textAlign(LEFT);
+    text(`Fruits Collected: ${score}`, 30, 50);
+    text(`Lives: ${lives}`, 30, 80);
     image(character, mouseX - 50, characterX, characterY, characterZ);
   }
 
@@ -393,21 +398,21 @@ class Level {
   //game over
   gameOverDisplay() {
     //level2Sound.stop();
-    button4.position(width / 2, 400);
+    button4.position(650, 450);
     bg4 = background(bgImg4);
 
     fill(235, 64, 52);
 
-    textAlign(CENTER);
+    //
     textSize(70);
-    text("Game Over", width *1/3, 350);
+    textAlign(CENTER);
+    text("Game Over", (1 / 2) * width, (1 / 2) * height);
     textSize(30);
   }
 }
 
 // reset game   :Nafisa
 function reStart() {
-
   //level1Sound.stop();
   // level2Sound.stop();
   button4.position(8000, 8000);
@@ -525,11 +530,6 @@ function river() {
   fill(53, 195, 242);
   rect(0, height - 100, width, 100);
 }
-// function resetScore(){
-//   score =0;
-//   fallSpeed = random(1.5,2)
-
-// }
 
 // Use UP arrow to jump.  : Mariam
 

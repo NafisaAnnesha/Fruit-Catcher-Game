@@ -421,7 +421,16 @@ class Level {
   }
 
   instructionDisplay() {
-   square(width-400, height-100, 1/2*height);
+    
+   
+    textSize(30)
+    fill(36, 42, 43)
+    text("Collect the fruits to earn points" , width-1400, height-400 )
+    text("Move the mouse to collect fruits" , width-1400, height-500 )
+    text("Catch the fruits by jumping to earn double point" , width-1400, height-600 )
+    text("Catching the rotten fruit will deduct score by 1" , width-1400, height-700 )
+    text("failing to catch 5 fruits will result in Game Over" , width-1400, height-800 )
+       
   }
 }
 

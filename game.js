@@ -9,6 +9,10 @@ let watermelon, pear, orange, lemon, cherry, banana, apple;
 let rottenFruit, badFruit, badFruits;
 let numFruit;
 
+let lvl;
+let lvl1;
+let lvl2;
+
 let pics;
 let gameIsOver;
 
@@ -27,8 +31,7 @@ let bg1, bg2, bg3, bg4;
 let button1, button2, button3, button4;
 let bgImg1, bgImg2, bgImg3, bgImg4;
 
-let lvl1;
-let lvl2; 
+
 
 let pressed;
 let pressed2;
@@ -38,7 +41,9 @@ let fallSpeed;
 // let fruitR;
 
 function setup() {
-  
+  lvl = true;
+  lvl1 = false;
+  lvl2 = false;
     welcomeSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FDefense%20Line.mp3?v=1628214995780')
    mySound = createAudio('https://cdn.glitch.com/597f2092-cec7-4b41-a45d-256fd011a110%2Fmixkit-extra-bonus-in-a-video-game-2045.mp3?v=1628145860740');
   level1Sound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F03%20BGM%20%2303.mp3?v=1628216649532')
@@ -205,16 +210,34 @@ class BadFruit {
 } // end BadFruit/ obstacles
 
 function draw() {
+ 
   welcomeScreen.display1();
-
+  if(lvl){
+    welcomeSound.play();
+  }else{
+    welcomeSound.stop();
+  }
+  if (lvl1){
+    level1Sound.play();
+  }
+  else{
+    level1Sound.stop();
+  }
+  if(lvl2){
+    level2Sound.play();
+  }
+  else{
+    level2Sound.stop();
+  }
   checkLost();
 
   button1.mousePressed(() => (pressed = true));
   button4.mousePressed(() => (restart = true));
 
   if (pressed) {
-    
-    welcomeSound.stop();
+    lvl = false;
+    lvl1 = true;
+   // welcomeSound.stop();
     //level1Sound.play();
     level1.display2();
     button1.position(880, 880);
@@ -247,7 +270,8 @@ function draw() {
     //welcomeSound.stop()
     //level1Sound.stop();
     //score;
-    
+    lvl1 = false;
+    lvl2 = true;
     this.fallSpeed = random(2, 3);
     level2.display3();
   } 
@@ -271,14 +295,14 @@ function draw() {
 } // end draw
 // levels display : Nafisa
 class Level {
-  constructor(bg, lvl) {
+  constructor(bg) {
     //this.button = button;
     this.background = bg;
-    this.sound = lvl;
+    
   }
   //welcome screen
   display1() {
-    welcomeSound.play();
+   // welcomeSound.play();
     bg1 = background(bgImg1, height, width);
    
     button1.position(80, 540);
@@ -289,7 +313,7 @@ class Level {
     
     //level1Sound.play();
     bg2 = background(bgImg2, height, width);
-    lvl1 = level1Sound.play();
+    
     river();
     checkLost();
 
@@ -311,9 +335,9 @@ class Level {
 
   //level2
   display3() {
-    level1Sound.stop();
+    ///level1Sound.stop();
     bg3 = background(bgImg3);
-    lvl2 = level2Sound.play();
+   
     //fallSpeed = random(2, 2.5);
 
     river();
@@ -337,7 +361,7 @@ class Level {
 
   //game over   
   gameOverDisplay() {
-    level2Sound.stop();
+    //level2Sound.stop();
     button4.position((width/2), 400);
     bg4 = background(bgImg4);
      

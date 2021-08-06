@@ -87,6 +87,7 @@ function setup() {
 
   nextLevel = false;
   pressed = false;
+  pressed2 = false;
   restart = false;
   restart = false;
   gameIsOver = false;
@@ -271,7 +272,11 @@ function draw() {
 
   button1.mousePressed(() => (pressed = true));
   button4.mousePressed(() => (restart = true));
-
+  button2.mousePressed(() => (pressed2 = true));
+  button2.
+    if (pressed2) {
+   instruction.instructionDisplay();
+  }
   if (pressed) {
     lvl = false;
     lvl1 = true;
@@ -336,7 +341,8 @@ class Level {
   //welcome screen
   display1() {
     bg1 = background(bgImg1, height, width);
-
+    button2 = createButton("Instructions" )
+    
     textSize(90);
     fill(245, 66, 96);
     textFont(fontBold);
@@ -401,13 +407,18 @@ class Level {
     button4.position(650, 450);
     bg4 = background(bgImg4);
 
-    fill(235, 64, 52);
+    fill(173, 227, 86);
 
-    //
     textSize(70);
     textAlign(CENTER);
+    
+     text(`Fruits Collected: ${score}`, 1/2*width, 1/3*height);
     text("Game Over", (1 / 2) * width, (1 / 2) * height);
     textSize(30);
+  }
+  
+  instructionDisplay(){
+    square(1/2*width,height)
   }
 }
 
@@ -429,6 +440,7 @@ let welcomeScreen = new Level(bg1);
 let level1 = new Level(bg2, lvl1);
 let level2 = new Level(bg3, lvl2);
 let gameOver = new Level(bg4);
+let instruction = new Level(bg1);
 
 // keep track of score and game over condition   : Nafisa/ Mariam
 function checkScore() {

@@ -212,7 +212,7 @@ function draw() {
   if (pressed) {
     
     welcomeSound.stop();
-    level1Sound.play();
+    
     level1.display2();
     button1.position(880, 880);
    
@@ -235,20 +235,19 @@ function draw() {
   // end of character movement. 
   //proceed to next level  :Nafisa
   if (score >= 5) {
+    //level1Sound.stop();
     nextLevel = true;
-    level1Sound.stop();
+    
   }
 
   if (nextLevel) {
     
-    level2Sound.play();
+    //level1Sound.stop();
     //score;
 
     this.fallSpeed = random(2, 3);
     level2.display3();
-  } else{
-    
-  }
+  } 
 
   // Jumping Powerup   : Mariam
   if (isJumping) {
@@ -282,6 +281,8 @@ class Level {
 
   //level1
   display2() {
+    
+    level1Sound.play();
     bg2 = background(bgImg2, height, width);
 
     river();
@@ -305,6 +306,8 @@ class Level {
 
   //level2
   display3() {
+    level1Sound.stop();
+    level2Sound.play();
     bg3 = background(bgImg3);
 
     //fallSpeed = random(2, 2.5);

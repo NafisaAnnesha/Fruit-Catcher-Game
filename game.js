@@ -1,7 +1,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- * square,size, loadFont, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ * square,size,style, loadFont, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let fruits;
@@ -44,6 +44,7 @@ let fallSpeed;
 
 let jumpSound;
 let fallingSound;
+let btnCol;
 
 function setup() {
   lvl = true;
@@ -70,7 +71,7 @@ function setup() {
   fallingSound = createAudio('https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2F9RLYMKT-splash.mp3?v=1628224196061')
   
   fontBold = loadFont("https://cdn.glitch.com/1a5da310-9b8a-4d3a-9819-d5ce77569473%2FKaushanScript-Regular.ttf?v=1628225696174")
-  
+  btnCol = color(227, 166, 86)
   score = 0;
   lives = 5;
 
@@ -89,7 +90,9 @@ function setup() {
   //button1.style('background-color', col);
   //button1.position(300, 400);
 
-  button4 = createButton("restart");
+  button4 = createButton("Restart");
+  button4.size(150,50)
+  button4.style('background-color', btnCol)
 
   // FRUIT IMAGES   :Rodjina
   rottenFruit = loadImage(
@@ -334,6 +337,7 @@ class Level {
     text("Catch The Fruit", 1/3*width, 1/2*height)
     button1.position(1/2*width, 0.7*height);
     button1.size(150,50)
+    button1.style('background-color', btnCol)
   }
 
 
@@ -396,7 +400,7 @@ class Level {
 
     textAlign(CENTER);
     textSize(70);
-    text("Game Over", width / 2, 350);
+    text("Game Over", width *1/3, 350);
     textSize(30);
   }
 }

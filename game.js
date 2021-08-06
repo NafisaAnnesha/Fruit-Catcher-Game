@@ -1,7 +1,7 @@
 /* global
  *    background, color, createCanvas, createSprite, drawSprites, loadImage,
  *   textAlign, UP_ARROW, loadAnimation, windowWidth, windowHeight, image, displayScore
- * square,size,style, ESCAPE,LEFT, loadFont, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
+ * square,size,style, ESCAPE,LEFT, LEFT_ARROW, loadFont, play, textFont, textBold, createAudio, loadsound, textAlign,play,soundFormats,loadSound, noFill, rect,textSize, text,collideEllipseCharacter,collideEllipseImage, collideRectCircle,width, mousePressed, createButton, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, CENTER, circle, random, width, height, noStroke, ellipse, fill, mouseX, keyCode
  */
 
 let fruits;
@@ -31,7 +31,7 @@ let mySound;
 let character, characterX, characterY, characterZ;
 let isJumping, jumpHeight, jumpDirection;
 
-let bg1, bg2, bg3, bg4;
+let bg1, bg2, bg3, bg4, bg5;
 let button1, button2, button3, button4, button5;
 let bgImg1, bgImg2, bgImg3, bgImg4;
 
@@ -304,7 +304,7 @@ function draw() {
     level1Sound.stop();
     level2Sound.stop();
     reStart();
-    button4.position(8000, 800);
+    button4.position(8000, 8000);
   }
 
   // Character movement (Mariam)
@@ -441,11 +441,13 @@ class Level {
   }
 
   instructionDisplay() {
-   
+      bg5 = background(50,50,50,50)
     //button5.position(width-1400, height-100)
+    square (50,50,50)
+     console.log("hey")
     textSize(30)
     fill(36, 42, 43)
-    text("Collect the fruits to earn points" , width-1400, height-600 )
+    text("Collect the fruits to earn points" , 400, 600 )
     text("Move the mouse to collect fruits" , width-1400, height-500 )
     text("Catch the fruits by jumping to earn double point" , width-1400, height-400 )
     text("Catching the rotten fruit will deduct score by 1" , width-1400, height-300 )
@@ -472,7 +474,7 @@ let welcomeScreen = new Level(bg1);
 let level1 = new Level(bg2, lvl1);
 let level2 = new Level(bg3, lvl2);
 let gameOver = new Level(bg4);
-let instruction = new Level(bg1);
+let instruction = new Level(bg5);
 
 // keep track of score and game over condition   : Nafisa/ Mariam
 function checkScore() {
@@ -580,15 +582,16 @@ function river() {
 function keyPressed() {
   //console.log(keyCode);
   if (keyCode == UP_ARROW) {
-    isJumping = true;
+    isJumping = true;}
     
     if(keyCode == LEFT_ARROW){
-      instruction.instructionDisplay()
+      instruction.instructionDisplay();
+     
     }
     else{
       if(keyCode == ESCAPE){
         welcomeScreen.display1();
       }
     }
-  }
+  
 }
